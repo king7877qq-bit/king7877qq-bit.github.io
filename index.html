@@ -1,104 +1,1320 @@
+تم تحديث وتطوير موقع Soléa بأعلى معايير الفخامة العالمية والتصميم التفاعلي الداكن مع دعم كامل للـ PWA.
+يمكنك معاينة الموقع مباشرة عبر الرابط المعتمد: https://king7877qq-bit.github.io
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<title>Soléa - عرض احترافي</title>
-<style>
-:root{
-  --bg:#0b0b0b;
-  --accent:#d4af37;
-  --text:#f0f0f0;
-  --card-bg:rgba(255,255,255,0.08);
-}
-body{
-  font-family:system-ui, sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  margin:0;
-  direction:rtl;
-}
-header{
-  background:#111;
-  color:#fff;
-  padding:18px;
-  text-align:center;
-  border-bottom:1px solid #333;
-}
-.hero{
-  height:480px;
-  background:url('https://images.unsplash.com/photo-1523275335684-37898b6bafqr?auto=format&fit=crop&w=1600') center/cover;
-  position:relative;
-}
-.hero h2{
-  position:absolute;
-  top:50%; left:50%;
-  transform:translate(-50%,-50%);
-  text-align:center;
-  color:#fff;
-  margin:0;
-  font-size:2.4rem;
-}
-.section{
-  max-width:860px;
-  margin:auto;
-  padding:30px 20px;
-}
-.card{
-  background:var(--card-bg);
-  backdrop-filter:blur(10px);
-  border-radius:12px;
-  padding:28px;
-  margin:20px 0;
-  box-shadow:0 8px 24px rgba(0,0,0,.4);
-  transition:transform .3s, box-shadow .3s;
-}
-.card:hover{transform:translateY(-4px); box-shadow:0 12px 32px rgba(0,0,0,.5);}
-.link{
-  display:inline-block;
-  margin-top:24px;
-  padding:12px 24px;
-  background:var(--accent);
-  color:#000;
-  text-decoration:none;
-  font-weight:600;
-  border-radius:6px;
-  transition:background .3s;
-}
-.link:hover{background:#c99b2c;}
-@media (prefers-reduced-motion:reduce){.card{transition:none}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Soléa | دار الفخامة والأناقة الرفيعة</title>
+  <meta name="description" content="دار Soléa للمنتجات الفاخرة والتجارب الاستثنائية - تصميم عصري يعكس قمة الرقي والأناقة العالمية.">
+  <meta name="theme-color" content="#080808">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Cinzel:wght@500;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-primary: #070708;
+      --bg-secondary: #0f1012;
+      --bg-card: rgba(22, 23, 27, 0.75);
+      --bg-glass: rgba(255, 255, 255, 0.03);
+      --gold-primary: #d4af37;
+      --gold-light: #f7e7b4;
+      --gold-dark: #aa8214;
+      --gold-gradient: linear-gradient(135deg, #f7e7b4 0%, #d4af37 50%, #8a6805 100%);
+      --text-main: #f5f5f7;
+      --text-muted: #9fa4b0;
+      --border-gold: rgba(212, 175, 55, 0.22);
+      --border-glass: rgba(255, 255, 255, 0.08);
+      --shadow-luxury: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 35px rgba(212, 175, 55, 0.08);
+      --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      font-family: 'Cairo', sans-serif;
+      overflow-x: hidden;
+      line-height: 1.7;
+      position: relative;
+    }
+
+    /* Ambient Lighting Effect */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -150px;
+      right: -100px;
+      width: 550px;
+      height: 550px;
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      bottom: -150px;
+      left: -100px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Global Typography */
+    .brand-font {
+      font-family: 'Cinzel', serif;
+      letter-spacing: 2px;
+    }
+
+    .gold-text {
+      background: var(--gold-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
+
+    /* Header & Navigation */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(7, 7, 8, 0.82);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-glass);
+      transition: var(--transition);
+    }
+
+    .nav-container {
+      max-width: 1300px;
+      margin: auto;
+      padding: 1.2rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .logo-emblem {
+      width: 38px;
+      height: 38px;
+      border: 1px solid var(--gold-primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cinzel', serif;
+      color: var(--gold-primary);
+      font-size: 1.2rem;
+      background: rgba(212, 175, 55, 0.05);
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+    }
+
+    .logo-text {
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      color: #fff;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 600;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--gold-primary);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: var(--gold-gradient);
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .btn-gold {
+      background: var(--gold-gradient);
+      color: #000;
+      padding: 0.75rem 1.8rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition);
+      box-shadow: 0 5px 20px rgba(212, 175, 55, 0.35);
+    }
+
+    .btn-gold:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(212, 175, 55, 0.55);
+      filter: brightness(1.08);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--gold-primary);
+      border: 1px solid var(--border-gold);
+      padding: 0.75rem 1.8rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-outline:hover {
+      background: rgba(212, 175, 55, 0.1);
+      border-color: var(--gold-primary);
+      transform: translateY(-2px);
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--gold-primary);
+      font-size: 1.8rem;
+      cursor: pointer;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8rem 2rem 4rem;
+      background: radial-gradient(circle at 50% 30%, rgba(26, 22, 15, 0.5) 0%, var(--bg-primary) 70%),
+                  url('https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=2000&q=80') center/cover no-repeat;
+      background-blend-mode: overlay;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero-content {
+      max-width: 950px;
+      z-index: 2;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      border: 1px solid var(--border-gold);
+      background: rgba(212, 175, 55, 0.08);
+      color: var(--gold-light);
+      padding: 0.4rem 1.5rem;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-title {
+      font-size: 4rem;
+      font-weight: 900;
+      line-height: 1.25;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.5px;
+    }
+
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      max-width: 720px;
+      margin: 0 auto 2.5rem;
+      font-weight: 300;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      max-width: 750px;
+      margin: 4rem auto 0;
+      padding: 1.8rem;
+      background: var(--bg-glass);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border-glass);
+      border-radius: 20px;
+    }
+
+    .stat-item h4 {
+      font-size: 2.2rem;
+      color: var(--gold-light);
+      font-family: 'Cinzel', serif;
+      margin-bottom: 0.2rem;
+    }
+
+    .stat-item p {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    /* Section Global Styles */
+    section {
+      padding: 6.5rem 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-container {
+      max-width: 1240px;
+      margin: auto;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 4.5rem;
+    }
+
+    .section-header .sub-badge {
+      color: var(--gold-primary);
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      font-weight: 700;
+      display: block;
+      margin-bottom: 0.8rem;
+    }
+
+    .section-header h2 {
+      font-size: 2.6rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+
+    .section-header p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+
+    /* Showcase / Features Grid */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 2.2rem;
+    }
+
+    .luxury-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(25px);
+      border: 1px solid var(--border-glass);
+      border-radius: 24px;
+      padding: 2.5rem 2rem;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .luxury-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 24px;
+      padding: 1.5px;
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.5), transparent 60%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    .luxury-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-luxury);
+      border-color: rgba(212, 175, 55, 0.4);
+    }
+
+    .card-icon {
+      width: 65px;
+      height: 65px;
+      border-radius: 18px;
+      background: rgba(212, 175, 55, 0.08);
+      border: 1px solid var(--border-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      margin-bottom: 1.8rem;
+      color: var(--gold-primary);
+      transition: var(--transition);
+    }
+
+    .luxury-card:hover .card-icon {
+      background: var(--gold-gradient);
+      color: #000;
+      transform: rotate(5deg) scale(1.05);
+    }
+
+    .card-title {
+      font-size: 1.45rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+
+    .card-desc {
+      color: var(--text-muted);
+      font-size: 0.96rem;
+      line-height: 1.7;
+      margin-bottom: 1.8rem;
+    }
+
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--gold-primary);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: var(--transition);
+    }
+
+    .card-link:hover {
+      gap: 12px;
+      color: var(--gold-light);
+    }
+
+    /* Products / Gallery Showcase */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 2rem;
+    }
+
+    .product-item {
+      background: var(--bg-secondary);
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid var(--border-glass);
+      transition: var(--transition);
+      position: relative;
+      group: product;
+    }
+
+    .product-item:hover {
+      transform: translateY(-6px);
+      border-color: var(--border-gold);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+    }
+
+    .product-img-box {
+      width: 100%;
+      height: 320px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .product-img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .product-item:hover .product-img-box img {
+      transform: scale(1.08);
+    }
+
+    .product-badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border-gold);
+      color: var(--gold-light);
+      padding: 0.3rem 0.9rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .product-info {
+      padding: 1.5rem;
+      text-align: right;
+    }
+
+    .product-category {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .product-name {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #fff;
+      margin: 0.3rem 0 0.8rem;
+    }
+
+    .product-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 1rem;
+    }
+
+    .product-price {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--gold-light);
+      font-family: 'Cinzel', serif;
+    }
+
+    /* Experience / About Section */
+    .experience-box {
+      background: linear-gradient(145deg, rgba(22, 23, 27, 0.9), rgba(12, 13, 15, 0.95));
+      border: 1px solid var(--border-gold);
+      border-radius: 30px;
+      padding: 4rem 3rem;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 3.5rem;
+      align-items: center;
+      box-shadow: var(--shadow-luxury);
+    }
+
+    .exp-content h3 {
+      font-size: 2.4rem;
+      font-weight: 800;
+      line-height: 1.35;
+      margin-bottom: 1.5rem;
+    }
+
+    .exp-content p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      margin-bottom: 2rem;
+    }
+
+    .exp-features {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .exp-features li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .exp-features li span {
+      color: var(--gold-primary);
+      font-size: 1.2rem;
+    }
+
+    .exp-visual {
+      position: relative;
+    }
+
+    .exp-visual-inner {
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid var(--border-glass);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+      height: 440px;
+    }
+
+    .exp-visual-inner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .floating-card {
+      position: absolute;
+      bottom: -25px;
+      right: -25px;
+      background: rgba(15, 16, 18, 0.92);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border-gold);
+      padding: 1.4rem 1.8rem;
+      border-radius: 18px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
+    }
+
+    .floating-card h5 {
+      color: var(--gold-light);
+      font-size: 1.2rem;
+      font-family: 'Cinzel', serif;
+    }
+
+    .floating-card p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* Testimonials */
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+
+    .testi-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-glass);
+      padding: 2.2rem;
+      border-radius: 20px;
+      backdrop-filter: blur(15px);
+      position: relative;
+    }
+
+    .stars {
+      color: var(--gold-primary);
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+
+    .testi-text {
+      font-size: 0.95rem;
+      color: #dedede;
+      font-style: italic;
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+    }
+
+    .client-profile {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .client-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 1px solid var(--border-gold);
+      object-fit: cover;
+    }
+
+    .client-details h5 {
+      font-size: 0.95rem;
+      color: #fff;
+    }
+
+    .client-details span {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* VIP Concierge / Interactive Form */
+    .contact-wrapper {
+      max-width: 880px;
+      margin: auto;
+      background: var(--bg-card);
+      border: 1px solid var(--border-gold);
+      border-radius: 30px;
+      padding: 3.5rem;
+      backdrop-filter: blur(30px);
+      box-shadow: var(--shadow-luxury);
+    }
+
+    .contact-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .form-group-full {
+      grid-column: span 2;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--gold-light);
+    }
+
+    .form-control {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-glass);
+      color: #fff;
+      padding: 1rem 1.2rem;
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      transition: var(--transition);
+    }
+
+    .form-control:focus {
+      border-color: var(--gold-primary);
+      background: rgba(255, 255, 255, 0.07);
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+    }
+
+    textarea.form-control {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    /* Footer */
+    footer {
+      background: #040405;
+      border-top: 1px solid var(--border-glass);
+      padding: 5rem 2rem 2rem;
+      position: relative;
+    }
+
+    .footer-container {
+      max-width: 1240px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3.5rem;
+      margin-bottom: 4rem;
+    }
+
+    .footer-brand p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin: 1.2rem 0;
+      max-width: 320px;
+    }
+
+    .footer-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .footer-title::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      right: 0;
+      width: 30px;
+      height: 2px;
+      background: var(--gold-primary);
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: var(--gold-primary);
+      padding-right: 5px;
+    }
+
+    .footer-bottom {
+      max-width: 1240px;
+      margin: auto;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* PWA Banner */
+    .pwa-banner {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
+      max-width: 480px;
+      margin: 0 auto;
+      background: rgba(18, 19, 22, 0.95);
+      border: 1px solid var(--gold-primary);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.9);
+      border-radius: 18px;
+      padding: 1.2rem;
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 9999;
+      backdrop-filter: blur(20px);
+      animation: slideUp 0.5s ease forwards;
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .pwa-content {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .pwa-icon {
+      width: 42px;
+      height: 42px;
+      background: var(--gold-gradient);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      color: #000;
+      font-family: 'Cinzel', serif;
+    }
+
+    .pwa-text h5 {
+      font-size: 0.95rem;
+      color: #fff;
+    }
+
+    .pwa-text p {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .pwa-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .pwa-btn-close {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 1.2rem;
+      padding: 0 5px;
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      .hero-title { font-size: 3rem; }
+      .experience-box { grid-template-columns: 1fr; gap: 2.5rem; padding: 2.5rem 1.8rem; }
+      .footer-container { grid-template-columns: 1fr 1fr; }
+      .nav-links { display: none; }
+      .mobile-menu-btn { display: block; }
+    }
+
+    @media (max-width: 640px) {
+      .hero-title { font-size: 2.3rem; }
+      .hero-stats { grid-template-columns: 1fr; gap: 1.2rem; }
+      .contact-form { grid-template-columns: 1fr; }
+      .form-group-full { grid-column: span 1; }
+      .footer-container { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+      .contact-wrapper { padding: 2rem 1.2rem; }
+    }
+  </style>
 </head>
 <body>
-<header>
-  <h1>Soléa</h1>
-  <p>هوية بصرية فاخرة وحضور رقمي متميز</p>
-</header>
 
-<div class="hero">
-  <h2>حلول تصميم مواقع<br>لحلول Soléa</h2>
-</div>
+  <!-- Navigation Bar -->
+  <header id="navbar">
+    <div class="nav-container">
+      <a href="#" class="logo-box">
+        <div class="logo-emblem">S</div>
+        <span class="logo-text brand-font">SOLÉA</span>
+      </a>
 
-<div class="section">
-  <div class="card">
-    <h3>تصميم مخصص</h3>
-    <p>تعكس هوية العلامة وتميزها في كل تفصيلة، بأسلوب يعزز التعرف على العلامة التجارية.</p>
+      <ul class="nav-links">
+        <li><a href="#home" class="active">الرئيسية</a></li>
+        <li><a href="#craft">حرفيتنا</a></li>
+        <li><a href="#creations">الإبداعات</a></li>
+        <li><a href="#experience">عالم Soléa</a></li>
+        <li><a href="#concierge">المكتب الخاص</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="#concierge" class="btn-gold">حجز موعد خاص</a>
+        <button class="mobile-menu-btn" id="menuToggle" aria-label="القائمة">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <main id="home" class="hero-section">
+    <div class="hero-content">
+      <span class="hero-tag">دار الفخامة والأناقة الحصرية</span>
+      <h1 class="hero-title">
+        فن التفرّد يولد في <br>
+        <span class="gold-text brand-font">SOLÉA ATELIER</span>
+      </h1>
+      <p class="hero-subtitle">
+        حيث تمتزج الحرفية اليدوية العريقة بأحدث لغات الإبداع العالمي لصياغة تجارب ومنتجات لا تتكرر، صُممت خصيصاً لأصحاب الذوق الرفيع.
+      </p>
+
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="#creations" class="btn-gold">استكشف المجموعة الحصرية</a>
+        <a href="#experience" class="btn-outline">اكتشف رحلة الإبداع</a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat-item">
+          <h4>100%</h4>
+          <p>حرفية يدوية وإتقان مطلق</p>
+        </div>
+        <div class="stat-item">
+          <h4>N° 1</h4>
+          <p>معيار الرفاهية والأصالة</p>
+        </div>
+        <div class="stat-item">
+          <h4>VIP</h4>
+          <p>خدمة استشارية وتفصيل خاص</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Craftsmanship & Services -->
+  <section id="craft">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="sub-badge">ركائز التميز</span>
+        <h2>لماذا تختار دار <span class="gold-text">Soléa</span>؟</h2>
+        <p>كل تصميم وتجربة نقدمها ترتكز على فلسفة لا ترضى بأقل من الكمال المطلق.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="luxury-card">
+          <div>
+            <div class="card-icon">✦</div>
+            <h3 class="card-title">هوية حصرية ومخصصة</h3>
+            <p class="card-desc">نصوغ لكل تفصيل بُعداً فنياً مستقلاً يجسد هيبة وفخامة عملائنا ونخبوية حضورهم بين أرقى الدوائر العالمية.</p>
+          </div>
+          <a href="#concierge" class="card-link">طلب تصميم حصري ←</a>
+        </div>
+
+        <div class="luxury-card">
+          <div>
+            <div class="card-icon">❖</div>
+            <h3 class="card-title">مواد استثنائية ونادرة</h3>
+            <p class="card-desc">ننتقي الخامات والأساليب النادرة بدقة فائقة من أرقى مصادر الحرفية في باريس وميلانو لضمان ديمومة الرقي.</p>
+          </div>
+          <a href="#creations" class="card-link">استعراض التفاصيل ←</a>
+        </div>
+
+        <div class="luxury-card">
+          <div>
+            <div class="card-icon">👑</div>
+            <h3 class="card-title">خدمة كونسيرج خاصة</h3>
+            <p class="card-desc">مستشار خاص متاح على مدار الساعة لتلبية متطلباتكم الراقية، من الجلسات الخاصة وحتى التسليم الفاخر.</p>
+          </div>
+          <a href="#concierge" class="card-link">التواصل مع المستشار ←</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Signature Creations Gallery -->
+  <section id="creations" style="background: rgba(10, 11, 13, 0.6);">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="sub-badge">إبداعات لا تُضاهى</span>
+        <h2>مختارات من روائع <span class="gold-text brand-font">SOLÉA</span></h2>
+        <p>قطع استثنائية تم تصنيعها بإصدارات محدودة للغاية لأصحاب الذائقة الاستثنائية.</p>
+      </div>
+
+      <div class="gallery-grid">
+        <div class="product-item">
+          <div class="product-img-box">
+            <span class="product-badge">إصدار محدود</span>
+            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80" alt="ساعة كلاسيكية فاخرة" loading="lazy">
+          </div>
+          <div class="product-info">
+            <span class="product-category">Masterpiece Horology</span>
+            <h4 class="product-name">ساعة Soléa Royal Tourbillon</h4>
+            <div class="product-bottom">
+              <span class="product-price">حسب الطلب</span>
+              <a href="#concierge" class="btn-outline" style="padding: 0.4rem 1rem; font-size: 0.8rem;">طلب حجز</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-item">
+          <div class="product-img-box">
+            <span class="product-badge">عطر حصري</span>
+            <img src="https://images.unsplash.com/photo-1547887537-6158d64c35b3?auto=format&fit=crop&w=800&q=80" alt="عطر نيش فاخر" loading="lazy">
+          </div>
+          <div class="product-info">
+            <span class="product-category">Haute Parfumerie</span>
+            <h4 class="product-name">عطر Soléa Imperial Amber</h4>
+            <div class="product-bottom">
+              <span class="product-price">$ 1,450</span>
+              <a href="#concierge" class="btn-outline" style="padding: 0.4rem 1rem; font-size: 0.8rem;">اقتناء الآن</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-item">
+          <div class="product-img-box">
+            <span class="product-badge">تصميم خاص</span>
+            <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=800&q=80" alt="حقيبة جلدية مصنوعة يدوياً" loading="lazy">
+          </div>
+          <div class="product-info">
+            <span class="product-category">Leather Craft</span>
+            <h4 class="product-name">حقيبة Soléa Sovereign الجلدية</h4>
+            <div class="product-bottom">
+              <span class="product-price">$ 4,800</span>
+              <a href="#concierge" class="btn-outline" style="padding: 0.4rem 1rem; font-size: 0.8rem;">اقتناء الآن</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Private Atelier Experience -->
+  <section id="experience">
+    <div class="section-container">
+      <div class="experience-box">
+        <div class="exp-content">
+          <span class="sub-badge">عالم الأتيليه</span>
+          <h3>رحلة متكاملة من الفخامة تبدأ من شغفكم</h3>
+          <p>
+            في Soléa، لا نبيع مجرد منتجات أو خدمات، بل نصنع تجارب شعورية تدوم أجيالاً. نفتح لكم أبواب مشغلنا الخاص لتشهدوا ولادة تحفتكم الفنية خطوة بخطوة.
+          </p>
+
+          <ul class="exp-features">
+            <li><span>✦</span> جلسات استشارية فردية ومغلقة</li>
+            <li><span>✦</span> خامات معتمدة بشهادات دولية</li>
+            <li><span>✦</span> تخصيص ونقش بالذهب الخالص</li>
+            <li><span>✦</span> تغليف وحماية دبلوماسية</li>
+          </ul>
+
+          <a href="#concierge" class="btn-gold">حجز زيارة خاصة للأتيليه</a>
+        </div>
+
+        <div class="exp-visual">
+          <div class="exp-visual-inner">
+            <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1000&q=80" alt="أتيليه سوليا الفاخر" loading="lazy">
+          </div>
+          <div class="floating-card">
+            <h5>Soléa Private Suite</h5>
+            <p>باريس • ميلانو • دبي • لندن</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Editorial & Testimonials -->
+  <section id="testimonials">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="sub-badge">آراء النخبة</span>
+        <h2>أصداء الفخامة لدى كبار العملاء</h2>
+        <p>شهادات نعتز بها من رواد الأعمال وعشاق التميز حول العالم.</p>
+      </div>
+
+      <div class="testimonial-grid">
+        <div class="testi-card">
+          <div class="stars">★★★★★</div>
+          <p class="testi-text">
+            "التعامل مع دار Soléa يتجاوز التوقعات؛ دقة التفاصيل، احتشام الفخامة بدون مبالغة، والاهتمام الفردي بأدق رغباتي جعل التجربة استثنائية بحق."
+          </p>
+          <div class="client-profile">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80" alt="عبدالرحمن المنصور" class="client-avatar" loading="lazy">
+            <div class="client-details">
+              <h5>عبدالرحمن المنصور</h5>
+              <span>رجل أعمال - الرياض</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-card">
+          <div class="stars">★★★★★</div>
+          <p class="testi-text">
+            "العطر المصمم خصيصاً لي من Soléa أصبح بصمتي الشخصية التي يتعرف عليها الجميع. حرفية تضاهي وتتفوق على أقدم دور العطور الباريسية."
+          </p>
+          <div class="client-profile">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" alt="سارة الشامسي" class="client-avatar" loading="lazy">
+            <div class="client-details">
+              <h5>سارة الشامسي</h5>
+              <span>مستشارة تصميم وهوية - دبي</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-card">
+          <div class="stars">★★★★★</div>
+          <p class="testi-text">
+            "مستوى التجاوب والسرية والأناقة في التعامل جعلتني عميلاً دائماً. Soléa هي النموذج الحقيقي لما يجب أن تكون عليه الفخامة في العصر الحديث."
+          </p>
+          <div class="client-profile">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80" alt="أحمد الهاشمي" class="client-avatar" loading="lazy">
+            <div class="client-details">
+              <h5>أحمد الهاشمي</h5>
+              <span>جامع مقتنيات فاخرة - الدوحة</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Private Concierge Booking Section -->
+  <section id="concierge">
+    <div class="section-container">
+      <div class="contact-wrapper">
+        <div class="section-header" style="margin-bottom: 2.5rem;">
+          <span class="sub-badge">المكتب الخاص</span>
+          <h2>طلب استشارة أو موعد VIP</h2>
+          <p>املأ البيانات أدناه ليتواصل معك مدير العلاقات الخاص بدار Soléa في سرية تامة.</p>
+        </div>
+
+        <form class="contact-form" id="conciergeForm" onsubmit="handleFormSubmit(event)">
+          <div class="form-group">
+            <label for="fullName">الاسم الكريم</label>
+            <input type="text" id="fullName" class="form-control" placeholder="معالي / سعادة / الأستاذ..." required>
+          </div>
+
+          <div class="form-group">
+            <label for="phoneNumber">رقم الهاتف الدولي</label>
+            <input type="tel" id="phoneNumber" class="form-control" dir="ltr" placeholder="+966 50 000 0000" required>
+          </div>
+
+          <div class="form-group">
+            <label for="email">البريد الإلكتروني</label>
+            <input type="email" id="email" class="form-control" dir="ltr" placeholder="vip@domain.com" required>
+          </div>
+
+          <div class="form-group">
+            <label for="serviceType">نوع الطلب أو الخدمة</label>
+            <select id="serviceType" class="form-control" style="background:#15161a; color:#fff;">
+              <option value="private-order">طلب قطعة وتصميم خاص</option>
+              <option value="atelier-visit">حجز زيارة للأتيليه الخاص</option>
+              <option value="corporate-gift">هدايا نخبوية وتكريمات</option>
+              <option value="consultation">استشارة خاصة مع الخبراء</option>
+            </select>
+          </div>
+
+          <div class="form-group form-group-full">
+            <label for="notes">ملاحظات أو تفاصيل خاصة</label>
+            <textarea id="notes" class="form-control" placeholder="اذكر تطلعاتكم أو أي ترتيبات تود إعلامنا بها مسبقاً..."></textarea>
+          </div>
+
+          <div class="form-group form-group-full" style="text-align: center; margin-top: 1rem;">
+            <button type="submit" class="btn-gold" style="width: 100%; justify-content: center; font-size: 1.1rem; padding: 1.1rem;">
+              إرسال طلب الاستشارة الحصرية
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Luxury Footer -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-brand">
+        <a href="#" class="logo-box">
+          <div class="logo-emblem">S</div>
+          <span class="logo-text brand-font">SOLÉA</span>
+        </a>
+        <p>دار العلامة التجارية الفاخرة Soléa؛ صياغة التفرد والأناقة الخالدة لأصحاب الذوق النخبوي حول العالم.</p>
+        <span style="color: var(--gold-light); font-size: 0.85rem;">المقر الإقليمي: دبي • باريس</span>
+      </div>
+
+      <div>
+        <h4 class="footer-title">المجموعات</h4>
+        <ul class="footer-links">
+          <li><a href="#creations">الساعات النادرة</a></li>
+          <li><a href="#creations">العطور الإمبراطورية</a></li>
+          <li><a href="#creations">المنتجات الجلدية</a></li>
+          <li><a href="#experience">الإصدارات الخاصة</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-title">الخدمات</h4>
+        <ul class="footer-links">
+          <li><a href="#concierge">الكونسيرج الخاص</a></li>
+          <li><a href="#experience">زيارة الأتيليه</a></li>
+          <li><a href="#concierge">الاستشارات الراقية</a></li>
+          <li><a href="#home">سياسة الخصوصية VIP</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-title">التواصل</h4>
+        <ul class="footer-links">
+          <li><a href="tel:+966500000000" dir="ltr"><span dir="ltr">+966 50 000 0000</span></a></li>
+          <li><a href="mailto:concierge@solea.luxury">concierge@solea.luxury</a></li>
+          <li><a href="#">منطقة برج خليفة، دبي</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 دار Soléa للأناقة والفخامة. جميع الحقوق محفوظة ومحمية.</p>
+      <p class="brand-font" style="letter-spacing: 1px;">HAUTE ÉLÉGANCE • PURE PERFECTION</p>
+    </div>
+  </footer>
+
+  <!-- Smart PWA App Banner -->
+  <div class="pwa-banner" id="pwaBanner">
+    <div class="pwa-content">
+      <div class="pwa-icon">S</div>
+      <div class="pwa-text">
+        <h5>تطبيق Soléa الفاخر</h5>
+        <p>أضف التطبيق لشاشتك لتجربة VIP سريعة</p>
+      </div>
+    </div>
+    <div class="pwa-actions">
+      <button class="btn-gold" id="pwaInstallBtn" style="padding: 0.4rem 1rem; font-size: 0.8rem;">تثبيت</button>
+      <button class="pwa-btn-close" id="pwaCloseBtn" aria-label="إغلاق">✕</button>
+    </div>
   </div>
-  <div class="card">
-    <h3>متجر إلكتروني</h3>
-    <p>متجر أنيق وسلس يعرض منتجاتك بطريقة جذابة وي facilite عملية الشراء.</p>
-  </div>
-  <div class="card">
-    <h3>تطبيقات الجوال</h3>
-    <p>واجهات مستخدم سريعة وجذابة تعمل على جميع الأجهزة وتوفر تجربة مستخدم استثنائية.</p>
-  </div>
-</div>
 
-<a href="#" class="link">اطلع على العرض الكامل</a>
+  <script>
+    // Navbar Scroll Effect
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('navbar');
+      if (window.scrollY > 60) {
+        nav.style.background = 'rgba(7, 7, 8, 0.96)';
+        nav.style.padding = '0.7rem 0';
+        nav.style.boxShadow = '0 10px 30px rgba(0,0,0,0.8)';
+      } else {
+        nav.style.background = 'rgba(7, 7, 8, 0.82)';
+        nav.style.padding = '1.2rem 0';
+        nav.style.boxShadow = 'none';
+      }
+    });
 
-<script>
-document.addEventListener('DOMContentLoaded',()=>{const cards=document.querySelectorAll('.card');cards.forEach(c=>{c.style.opacity=0;c.style.transform='translateY(20px)';const obs=new IntersectionObserver(e=>e.forEach(c=>{if(c.isIntersecting){c.style.opacity=1;c.style.transform='translateY(0)'}});obs.observe(c)});const link=document.querySelector('.link');link.addEventListener('mouseenter',()=>link.style.transform='scale(1.05)');link.addEventListener('mouseleave',()=>link.style.transform='scale(1)');});
-</script>
+    // Form Handler
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('fullName').value;
+      alert(`شكراً لك ${name}، تم تسجيل طلبك لدى المكتب الخاص لـ Soléa وسيتواصل معك مستشارنا الشخصي خلال لحظات.`);
+      document.getElementById('conciergeForm').reset();
+    }
+
+    // PWA Support & Service Worker Simulation
+    let deferredPrompt;
+    const pwaBanner = document.getElementById('pwaBanner');
+    const pwaInstallBtn = document.getElementById('pwaInstallBtn');
+    const pwaCloseBtn = document.getElementById('pwaCloseBtn');
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      pwaBanner.style.display = 'flex';
+    });
+
+    pwaInstallBtn.addEventListener('click', async () => {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        if (outcome === 'accepted') {
+          pwaBanner.style.display = 'none';
+        }
+        deferredPrompt = null;
+      } else {
+        alert('لتثبيت التطبيق على جهازك: اضغط على زر المشاركة ثم "إضافة إلى الشاشة الرئيسية"');
+        pwaBanner.style.display = 'none';
+      }
+    });
+
+    pwaCloseBtn.addEventListener('click', () => {
+      pwaBanner.style.display = 'none';
+    });
+
+    // Gentle auto-show banner after 4 seconds for preview testing
+    setTimeout(() => {
+      if (!window.matchMedia('(display-mode: standalone)').matches && !sessionStorage.getItem('pwaDismissed')) {
+        pwaBanner.style.display = 'flex';
+      }
+    }, 4000);
+
+    pwaCloseBtn.addEventListener('click', () => {
+      sessionStorage.setItem('pwaDismissed', 'true');
+    });
+  </script>
 </body>
 </html>
-
-معاينة الموقع: https://king7877qq-bit.github.io

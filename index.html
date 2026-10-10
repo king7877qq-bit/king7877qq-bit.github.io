@@ -2,35 +2,101 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<title>Soléa - حيوي وتفاعلي</title>
+<title>Soléa - عرض احترافي</title>
 <style>
-:root{--p:#e67e22;--b:#fafafa;--t:#2c3e50}
-body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;margin:0;background:var(--b);color:var(--t);direction:rtl}
-header{background:#2c3e50;color:#ecf0f1;padding:15px;text-align:center}
-.hero{height:250px;background:url('https://images.unsplash.com/photo-1523275335684-37898b6bafqr?auto=format&fit=crop&w=1200') center/cover;position:relative;overflow:hidden}
-.hero::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,0.3)}
-.hero-text{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;animation:fadeIn .8s ease forwards}
-@keyframes fadeIn{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0)}}
-.section{max-width:820px;margin:auto;padding:20px}
-.card{background:#fff;margin:15px 0;padding:20px;border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,.1);opacity:0;transform:translateY(20px);transition:opacity .4s,transform .4s}
-.card.visible{opacity:1;transform:translateY(0)}
-.link{display:inline-block;margin-top:20px;padding:10px 20px;background:var(--p);color:#fff;text-decoration:none;border-radius:5px;transition:background .3s}
-.link:hover{background:#d35400}
-@media (prefers-reduced-motion:reduce){.hero-text{animation:none}.card{transition:none}}
+:root{
+  --bg:#0b0b0b;
+  --accent:#d4af37;
+  --text:#f0f0f0;
+  --card-bg:rgba(255,255,255,0.08);
+}
+body{
+  font-family:system-ui, sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  margin:0;
+  direction:rtl;
+}
+header{
+  background:#111;
+  color:#fff;
+  padding:18px;
+  text-align:center;
+  border-bottom:1px solid #333;
+}
+.hero{
+  height:480px;
+  background:url('https://images.unsplash.com/photo-1523275335684-37898b6bafqr?auto=format&fit=crop&w=1600') center/cover;
+  position:relative;
+}
+.hero h2{
+  position:absolute;
+  top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  text-align:center;
+  color:#fff;
+  margin:0;
+  font-size:2.4rem;
+}
+.section{
+  max-width:860px;
+  margin:auto;
+  padding:30px 20px;
+}
+.card{
+  background:var(--card-bg);
+  backdrop-filter:blur(10px);
+  border-radius:12px;
+  padding:28px;
+  margin:20px 0;
+  box-shadow:0 8px 24px rgba(0,0,0,.4);
+  transition:transform .3s, box-shadow .3s;
+}
+.card:hover{transform:translateY(-4px); box-shadow:0 12px 32px rgba(0,0,0,.5);}
+.link{
+  display:inline-block;
+  margin-top:24px;
+  padding:12px 24px;
+  background:var(--accent);
+  color:#000;
+  text-decoration:none;
+  font-weight:600;
+  border-radius:6px;
+  transition:background .3s;
+}
+.link:hover{background:#c99b2c;}
+@media (prefers-reduced-motion:reduce){.card{transition:none}}
 </style>
 </head>
 <body>
-<header><h1>Soléa</h1><p>هوية بصرية فاخرة وحضور رقمي متميز</p></header>
-<div class="hero"><div class="hero-text"><h2>حلول تصميم مواقع<br>لحلول Soléa</h2></div></div>
-<div class="section">
-<div class="card"><h3>تصميم مخصص</h3><p>تعكس هوية العلامة وتميزها في كل تفصيلة.</p></div>
-<div class="card"><h3>متجر إلكتروني</h3><p>تجربة تسوق أنيقة وسلسة للعملاء.</p></div>
-<div class="card"><h3>تطبيقات الجوال</h3><p>واجهة مستخدم سريعة وجذابة على جميع الأجهزة.</p></div>
+<header>
+  <h1>Soléa</h1>
+  <p>هوية بصرية فاخرة وحضور رقمي متميز</p>
+</header>
+
+<div class="hero">
+  <h2>حلول تصميم مواقع<br>لحلول Soléa</h2>
 </div>
+
+<div class="section">
+  <div class="card">
+    <h3>تصميم مخصص</h3>
+    <p>تعكس هوية العلامة وتميزها في كل تفصيلة، بأسلوب يعزز التعرف على العلامة التجارية.</p>
+  </div>
+  <div class="card">
+    <h3>متجر إلكتروني</h3>
+    <p>متجر أنيق وسلس يعرض منتجاتك بطريقة جذابة وي facilite عملية الشراء.</p>
+  </div>
+  <div class="card">
+    <h3>تطبيقات الجوال</h3>
+    <p>واجهات مستخدم سريعة وجذابة تعمل على جميع الأجهزة وتوفر تجربة مستخدم استثنائية.</p>
+  </div>
+</div>
+
 <a href="#" class="link">اطلع على العرض الكامل</a>
 
 <script>
-document.addEventListener('DOMContentLoaded',()=>{const cards=document.querySelectorAll('.card');const obs=new IntersectionObserver((e)=>e.forEach(c=>c.isIntersecting&&c.classList.add('visible')));cards.forEach(c=>obs.observe(c));const link=document.querySelector('.link');link.addEventListener('mouseenter',()=>link.style.transform='scale(1.05)');link.addEventListener('mouseleave',()=>link.style.transform='scale(1)');});
+document.addEventListener('DOMContentLoaded',()=>{const cards=document.querySelectorAll('.card');cards.forEach(c=>{c.style.opacity=0;c.style.transform='translateY(20px)';const obs=new IntersectionObserver(e=>e.forEach(c=>{if(c.isIntersecting){c.style.opacity=1;c.style.transform='translateY(0)'}});obs.observe(c)});const link=document.querySelector('.link');link.addEventListener('mouseenter',()=>link.style.transform='scale(1.05)');link.addEventListener('mouseleave',()=>link.style.transform='scale(1)');});
 </script>
 </body>
 </html>

@@ -1,43 +1,1197 @@
-تم تحديث الملف ليشمل الصور كـ Base64 داخل HTML.
+تمت إعادة بناء وتصميم موقع سوليا (Soléa) بالكامل بأرقى معايير الفخامة الداكنة، مع اعتماد بروتوكول روابط Unsplash المباشرة وعالية الدقة لكافة المقتنيات وتوفير دعم RTL وتجربة PWA متكاملة.
 
 ```html
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<title>Soléa – موقع فاخر</title>
-<style>
-  body{margin:0;font-family:'Montserrat',sans-serif;background:#0b0b0b;color:#fff;line-height:1.6;}
-  .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:2rem;}
-  .hero h1{font-size:4rem;margin-bottom:1rem;font-family:'Playfair Display',serif;color:#d4af37;}
-  .hero p{font-size:1.5rem;max-width:800px;}
-  .gallery{padding:4rem;background:#141414;}
-  .gallery h2{text-align:center;margin-bottom:2rem;font-size:2.5rem;color:#c5a059;}
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;}
-  .grid img{max-width:100%;height:auto;border-radius:8px;display:block;}
-  .footer{text-align:center;padding:2rem;background:#000;font-size:0.9rem;}
-  a{color:#d4af37;text-decoration:none;}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soléa | دار سوليا للمقتنيات النادرة والتحف الملكية</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,900;1,600&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+
+  <!-- Embedded PWA Manifest -->
+  <script>
+    const pwaManifest = {
+      name: "Soléa Rare Collectibles",
+      short_name: "Soléa",
+      start_url: "./index.html",
+      display: "standalone",
+      background_color: "#0b0b0b",
+      theme_color: "#d4af37",
+      icons: [
+        {
+          src: "https://images.unsplash.com/photo-1621416894569-0f39ed31d247?auto=format&fit=crop&w=192&q=80",
+          sizes: "192x192",
+          type: "image/png"
+        }
+      ]
+    };
+    const manifestBlob = new Blob([JSON.stringify(pwaManifest)], {type: 'application/json'});
+    const manifestURL = URL.createObjectURL(manifestBlob);
+    const linkTag = document.createElement('link');
+    linkTag.rel = 'manifest';
+    linkTag.href = manifestURL;
+    document.head.appendChild(linkTag);
+  </script>
+
+  <style>
+    :root {
+      --bg-dark: #0b0b0b;
+      --bg-card: rgba(22, 22, 22, 0.85);
+      --card-border: rgba(212, 175, 55, 0.25);
+      --gold-primary: #d4af37;
+      --gold-light: #f5e08b;
+      --gold-dark: #997819;
+      --text-main: #f0f0f0;
+      --text-muted: #a6a6a6;
+      --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: 'Tajawal', sans-serif;
+      line-height: 1.8;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.03) 0%, transparent 40%);
+    }
+
+    /* Typography */
+    h1, h2, h3, .brand-font {
+      font-family: 'Amiri', 'Playfair Display', serif;
+      letter-spacing: 0.5px;
+    }
+
+    /* Navigation */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(11, 11, 11, 0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+      transition: var(--transition);
+    }
+
+    .nav-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 1.2rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .brand-logo svg {
+      width: 38px;
+      height: 38px;
+      fill: var(--gold-primary);
+      filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.4));
+    }
+
+    .brand-logo-text {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #fff;
+      font-family: 'Playfair Display', serif;
+      letter-spacing: 1.5px;
+    }
+
+    .brand-logo-text span {
+      color: var(--gold-primary);
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2.2rem;
+    }
+
+    .nav-links a {
+      color: #dedede;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--gold-primary);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      right: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gold-primary);
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-primary) 50%, var(--gold-dark) 100%);
+      color: #0b0b0b;
+      padding: 0.75rem 1.8rem;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(212, 175, 55, 0.25);
+      transition: var(--transition);
+    }
+
+    .btn-gold:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(212, 175, 55, 0.45);
+      filter: brightness(1.08);
+    }
+
+    .btn-outline {
+      border: 1px solid var(--gold-primary);
+      color: var(--gold-primary);
+      background: transparent;
+      padding: 0.75rem 1.8rem;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition);
+    }
+
+    .btn-outline:hover {
+      background: rgba(212, 175, 55, 0.1);
+      color: #fff;
+      border-color: #fff;
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      padding: 8rem 2rem 5rem;
+      background: 
+        linear-gradient(rgba(11, 11, 11, 0.8), rgba(11, 11, 11, 0.95)),
+        url('https://images.unsplash.com/photo-1461360370896-922624d12aa1?auto=format&fit=crop&w=2000&q=80') center/cover no-repeat fixed;
+    }
+
+    .hero-container {
+      max-width: 1250px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 4rem;
+      align-items: center;
+      width: 100%;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(212, 175, 55, 0.1);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      padding: 0.4rem 1.2rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      color: var(--gold-light);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title {
+      font-size: 3.8rem;
+      line-height: 1.2;
+      color: #ffffff;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title span {
+      background: linear-gradient(135deg, var(--gold-light), var(--gold-primary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-desc {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      margin-bottom: 2.5rem;
+      max-width: 620px;
+      line-height: 1.9;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .stat-number {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--gold-primary);
+      font-family: 'Playfair Display', serif;
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .hero-card {
+      position: relative;
+      background: var(--bg-card);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-card img {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      border-radius: 12px;
+      filter: contrast(1.05) brightness(0.95);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+    }
+
+    .hero-card-meta {
+      margin-top: 1.2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .hero-card-title {
+      font-size: 1.2rem;
+      color: #fff;
+    }
+
+    .hero-card-tag {
+      color: var(--gold-primary);
+      font-size: 0.85rem;
+      background: rgba(212, 175, 55, 0.1);
+      padding: 0.2rem 0.8rem;
+      border-radius: 20px;
+    }
+
+    /* Section Global */
+    section {
+      padding: 6rem 2rem;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 750px;
+      margin: 0 auto 4.5rem;
+    }
+
+    .section-subtitle {
+      font-size: 0.9rem;
+      color: var(--gold-primary);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 0.6rem;
+      font-weight: 600;
+    }
+
+    .section-title {
+      font-size: 2.8rem;
+      color: #fff;
+      margin-bottom: 1.2rem;
+    }
+
+    .section-desc {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+
+    /* Gallery / Vault Section */
+    .vault {
+      background: #0e0e0e;
+      position: relative;
+    }
+
+    .filter-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 3.5rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      color: var(--text-muted);
+      padding: 0.6rem 1.8rem;
+      border-radius: 30px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: 'Tajawal', sans-serif;
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: var(--gold-primary);
+      color: #0b0b0b;
+      font-weight: 700;
+      border-color: var(--gold-primary);
+    }
+
+    .vault-grid {
+      max-width: 1250px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 2.2rem;
+    }
+
+    .item-card {
+      background: var(--bg-card);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: var(--transition);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .item-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--gold-primary);
+      box-shadow: 0 15px 35px rgba(212, 175, 55, 0.15);
+    }
+
+    .item-image-wrapper {
+      position: relative;
+      width: 100%;
+      height: 270px;
+      overflow: hidden;
+    }
+
+    .item-image-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .item-card:hover .item-image-wrapper img {
+      transform: scale(1.08);
+    }
+
+    .item-era-badge {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: rgba(11, 11, 11, 0.85);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      color: var(--gold-light);
+      padding: 0.3rem 0.9rem;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .item-body {
+      padding: 1.8rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .item-category {
+      font-size: 0.8rem;
+      color: var(--gold-primary);
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .item-title {
+      font-size: 1.4rem;
+      color: #fff;
+      margin-bottom: 0.8rem;
+    }
+
+    .item-description {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      margin-bottom: 1.4rem;
+      line-height: 1.7;
+      flex-grow: 1;
+    }
+
+    .item-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1.2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .item-status {
+      font-size: 0.85rem;
+      color: #9cd89c;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .item-status::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background: #4ade80;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    /* Pillars / About */
+    .about-section {
+      max-width: 1250px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .about-image-stack {
+      position: relative;
+    }
+
+    .about-image-stack img {
+      width: 85%;
+      border-radius: 16px;
+      border: 1px solid var(--card-border);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+    }
+
+    .about-badge-card {
+      position: absolute;
+      bottom: -30px;
+      left: 10px;
+      background: var(--bg-card);
+      border: 1px solid var(--gold-primary);
+      padding: 1.5rem;
+      border-radius: 12px;
+      backdrop-filter: blur(12px);
+      max-width: 260px;
+    }
+
+    .about-badge-card h4 {
+      color: var(--gold-primary);
+      margin-bottom: 0.4rem;
+      font-size: 1.1rem;
+    }
+
+    .about-features {
+      list-style: none;
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+    }
+
+    .about-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .feature-icon {
+      background: rgba(212, 175, 55, 0.1);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold-primary);
+      flex-shrink: 0;
+      font-size: 1.2rem;
+    }
+
+    /* VIP Contact / Private Vault Access */
+    .vip-contact {
+      background: linear-gradient(180deg, #0b0b0b 0%, #141414 100%);
+      border-top: 1px solid rgba(212, 175, 55, 0.15);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+    }
+
+    .contact-container {
+      max-width: 1050px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 3.5rem;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.8rem;
+      margin-top: 2rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .form-group.full-width {
+      grid-column: span 2;
+    }
+
+    label {
+      font-size: 0.9rem;
+      color: #dedede;
+      font-weight: 500;
+    }
+
+    input, select, textarea {
+      background: rgba(11, 11, 11, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 0.9rem 1.2rem;
+      border-radius: 6px;
+      color: #fff;
+      font-family: 'Tajawal', sans-serif;
+      font-size: 0.95rem;
+      transition: var(--transition);
+      outline: none;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--gold-primary);
+      box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+    }
+
+    /* PWA Install Banner */
+    #pwa-banner {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background: #141414;
+      border: 1px solid var(--gold-primary);
+      padding: 1.2rem 1.8rem;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    #pwa-banner p {
+      font-size: 0.9rem;
+      margin: 0;
+      color: #fff;
+    }
+
+    /* Footer */
+    footer {
+      background: #070707;
+      padding: 4.5rem 2rem 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .footer-container {
+      max-width: 1250px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 3.5rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .footer-col h5 {
+      color: var(--gold-primary);
+      font-size: 1.15rem;
+      margin-bottom: 1.4rem;
+      font-family: 'Amiri', serif;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: var(--gold-primary);
+      padding-right: 5px;
+    }
+
+    .footer-bottom {
+      max-width: 1250px;
+      margin: 2rem auto 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    /* Modal */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.88);
+      backdrop-filter: blur(8px);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .modal-content {
+      background: #141414;
+      border: 1px solid var(--gold-primary);
+      border-radius: 14px;
+      max-width: 700px;
+      width: 100%;
+      padding: 2rem;
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: transparent;
+      border: none;
+      color: var(--gold-primary);
+      font-size: 1.8rem;
+      cursor: pointer;
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      .hero-container,
+      .about-section,
+      .footer-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      .nav-links {
+        display: none;
+      }
+      .hero-title {
+        font-size: 2.8rem;
+      }
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+      .form-group.full-width {
+        grid-column: span 1;
+      }
+    }
+  </style>
 </head>
 <body>
-  <section class="hero">
-    <h1>مرحباً بكم في سوليا</h1>
-    <p>وجهة استثنائية للقطع النادرة والتاريخ العريق.</p>
-  </section>
 
-  <section class="gallery">
-    <h2>معرض القطع</h2>
-    <div class="grid">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAFgwJ/l5X8AAAAASUVORK5CYII=" alt="طابع بريدي Rare">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAFgwJ/l5X8AAAAASUVORK5CYII=" alt="عملة نادرة">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAFgwJ/l5X8AAAAASUVORK5CYII=" alt="قطعة اثرية">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAFgwJ/l5X8AAAAASUVORK5CYII=" alt="حدث خاص">
+  <!-- Navigation -->
+  <header>
+    <div class="nav-container">
+      <a href="#" class="brand-logo">
+        <svg viewBox="0 0 24 24">
+          <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+        </svg>
+        <span class="brand-logo-text">SOLÉA <span>| سوليا</span></span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#hero" class="active">الرئيسية</a></li>
+        <li><a href="#vault">الخزينة الملكية</a></li>
+        <li><a href="#about">دار الخبرة والتوثيق</a></li>
+        <li><a href="#services">خدمات التقييم</a></li>
+        <li><a href="#contact">المعاينة الخاصة</a></li>
+      </ul>
+
+      <a href="#contact" class="btn-gold">حجز معاينة VIP</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="hero-container">
+      <div>
+        <div class="hero-badge">
+          <span>👑 دار التوثيق والنوادر التاريخية المعتمدة</span>
+        </div>
+        <h1 class="hero-title">
+          أصالة التاريخ، وخلود <span>المقتنيات النادرة</span>
+        </h1>
+        <p class="hero-desc">
+          نفتح خزائن التاريخ لأرقى هواة الاقتناء والمستثمرين حول العالم. طوابع بريدية إمبراطورية، مسكوكات ذهبية نادرة، ومخطوطات أثرية موثقة بأعلى معايير المصداقية العالمية.
+        </p>
+        <div class="hero-actions">
+          <a href="#vault" class="btn-gold">استكشف الخزينة</a>
+          <a href="#about" class="btn-outline">فلسفة سوليا</a>
+        </div>
+        <div class="hero-stats">
+          <div>
+            <div class="stat-number">100%</div>
+            <div class="stat-label">أصالة موثقة بشهادات COA</div>
+          </div>
+          <div>
+            <div class="stat-number">+2,400</div>
+            <div class="stat-label">قطعة تاريخية محفوظة</div>
+          </div>
+          <div>
+            <div class="stat-number">1880</div>
+            <div class="stat-label">إرث من التقدير والندرة</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <img src="https://images.unsplash.com/photo-1621416894569-0f39ed31d247?auto=format&fit=crop&w=1000&q=80" alt="دينار أثري ذهبي">
+        <div class="hero-card-meta">
+          <div>
+            <div class="hero-card-title">دينار أموي ذهبي تاريخي</div>
+            <div style="font-size:0.85rem; color:#888;">سنة 77 هجرية - محفوظ بحالة الصك الأصلية</div>
+          </div>
+          <span class="hero-card-tag">قطعة أثرية استثنائية</span>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section class="footer">
-    <p>© 2025 Soléa | تواصل معنا: <span dir="ltr">+962 1234 5678</span></p>
+  <!-- Vault Section (Curated Gallery) -->
+  <section class="vault" id="vault">
+    <div class="section-header">
+      <div class="section-subtitle">The Royal Vault</div>
+      <h2 class="section-title">خزينة المقتنيات النادرة</h2>
+      <p class="section-desc">مجموعة مختارة بعناية فائقة تمثل قمم الفن والسك والتوثيق عبر العصور والحضارات.</p>
+    </div>
+
+    <div class="filter-tabs">
+      <button class="filter-btn active" onclick="filterVault('all')">كافة المعروضات</button>
+      <button class="filter-btn" onclick="filterVault('coins')">العملات والمسكوكات</button>
+      <button class="filter-btn" onclick="filterVault('stamps')">الطوابع والوثائق</button>
+      <button class="filter-btn" onclick="filterVault('antiques')">الساعات والأنتيك الفاخر</button>
+    </div>
+
+    <div class="vault-grid">
+      <!-- Item 1: Rare Coin -->
+      <div class="item-card" data-category="coins">
+        <div class="item-image-wrapper">
+          <img src="https://images.unsplash.com/photo-1621416894569-0f39ed31d247?auto=format&fit=crop&w=800&q=80" alt="دينار ذهبي بيزنطي">
+          <span class="item-era-badge">القرن السابع الميلادي</span>
+        </div>
+        <div class="item-body">
+          <div class="item-category">مسكوكات إمبراطورية</div>
+          <h3 class="item-title">سوليدوس ذهبي إمبراطوري نادر</h3>
+          <p class="item-description">مسكوكة ذهبية بنقاء استثنائي وتفاصيل مذهبة مكتملة للتاج والصولجان، مع شهادة فحص مطيافي معتمدة.</p>
+          <div class="item-footer">
+            <span class="item-status">متاح للعرض الخاص</span>
+            <button class="btn-outline" style="padding:0.4rem 1rem;" onclick="openDetails('سوليدوس ذهبي إمبراطوري نادر', 'مسكوكة من الذهب الخالص مسكوكة بدقة عالية تمثل رمز السيادة والندرة التاريخية.')">معاينة</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 2: Antique Watch -->
+      <div class="item-card" data-category="antiques">
+        <div class="item-image-wrapper">
+          <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=800&q=80" alt="ساعة جيب ذهبية عتيقة">
+          <span class="item-era-badge">العصر الفيكتوري 1892</span>
+        </div>
+        <div class="item-body">
+          <div class="item-category">تحف التوقيت السويسرية</div>
+          <h3 class="item-title">ساعة جيب ملكية مرصعة بالمينا</h3>
+          <p class="item-description">صناعة يدوية بجنيف، حركة ميكانيكية معقدة مع غطاء خلفي منقوش بماء الذهب وزخارف الأرابيسك الملكية.</p>
+          <div class="item-footer">
+            <span class="item-status">محجوز لمعاينة VIP</span>
+            <button class="btn-outline" style="padding:0.4rem 1rem;" onclick="openDetails('ساعة جيب ملكية مرصعة بالمينا', 'إحدى أندر قطع دار هورولوجي جنيف المنقوشة يدويًا بدقة استثنائية.')">معاينة</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 3: Rare Stamps & Documents -->
+      <div class="item-card" data-category="stamps">
+        <div class="item-image-wrapper">
+          <img src="https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=800&q=80" alt="طوابع ووثائق كلاسيكية">
+          <span class="item-era-badge">المملكة المتحدة 1840</span>
+        </div>
+        <div class="item-body">
+          <div class="item-category">طوابع ووثائق نادرة</div>
+          <h3 class="item-title">بيني بلاك مع الختم المالتيزي</h3>
+          <p class="item-description">أول طابع بريدي في التاريخ، بحالة حفظ متميزة وبحواف كاملة، موثق ومدرج ضمن أهم كتالوجات المقتنيات العالمية.</p>
+          <div class="item-footer">
+            <span class="item-status">متاح للمزايدة الخاصة</span>
+            <button class="btn-outline" style="padding:0.4rem 1rem;" onclick="openDetails('بيني بلاك مع الختم المالتيزي', 'رمز ولادة البريد العالمي، تحفة لا غنى عنها لأي مجموعة طوابع استثمارية رفيعة.')">معاينة</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 4: Rare Ancient Manuscripts -->
+      <div class="item-card" data-category="antiques">
+        <div class="item-image-wrapper">
+          <img src="https://images.unsplash.com/photo-1461360370896-922624d12aa1?auto=format&fit=crop&w=800&q=80" alt="مخطوطة أندلسية نادرة">
+          <span class="item-era-badge">الأندلس - القرن الثاني عشر</span>
+        </div>
+        <div class="item-body">
+          <div class="item-category">المخطوطات والكتب النفيسة</div>
+          <h3 class="item-title">مخطوطة فلكية مذهبة على رق الغزال</h3>
+          <p class="item-description">صفحات مذهبة بالخط المغربي الأندلسي العريق، تتضمن جداول ورسومًا فلكية بديعة تعكس أوج الحضارة العلمية.</p>
+          <div class="item-footer">
+            <span class="item-status">ضمن خزانة الحفظ البلاتينية</span>
+            <button class="btn-outline" style="padding:0.4rem 1rem;" onclick="openDetails('مخطوطة فلكية مذهبة على رق الغزال', 'وثيقة تاريخية نادرة توثق إرث العلوم الإسلامية بتذهيب يدوي متقن.')">معاينة</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 5: Antique Sculpture & Relics -->
+      <div class="item-card" data-category="antiques">
+        <div class="item-image-wrapper">
+          <img src="https://images.unsplash.com/photo-1578925518470-4def7a0f08bb?auto=format&fit=crop&w=800&q=80" alt="تمثال أثري كلاسيكي">
+          <span class="item-era-badge">الحضارة الهلنستية</span>
+        </div>
+        <div class="item-body">
+          <div class="item-category">المنحوتات الكلاسيكية</div>
+          <h3 class="item-title">رأس من الرخام النقي المنحوت</h3>
+          <p class="item-description">قطعة رخامية أصلية نادرة تبرز براعة النحت الكلاسيكي والسمات الملحمية، ذات مصدر موثق وسجل ملكية قانوني صارم.</p>
+          <div class="item-footer">
+            <span class="item-status">متاح للعرض الخاص</span>
+            <button class="btn-outline" style="padding:0.4rem 1rem;" onclick="openDetails('رأس من الرخام النقي المنحوت', 'منحوتة تاريخية تعكس دقة الفن النحتي القديم مع توثيق مسار الملكية التاريخي.')">معاينة</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 6: Royal Jewelry & Stones -->
+      <div class="item-card" data-category="coins">
+        <div class="item-image-wrapper">
+          <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=800&q=80" alt="مجوهرات وأحجار عتيقة">
+          <span class="item-era-badge">سلالة رومانوف 1905</span>
+        </div>
+        <div class="item-body">
+          <div class="item-category">المجوهرات الملكية النادرة</div>
+          <h3 class="item-title">خاتم الزمرد الإمبراطوري والذهب</h3>
+          <p class="item-description">حجر زمرد كولومبي طبيعي غير معالج محاط بقطع ألماس قديمة عيار 18 قيراط، يعود لأحد بيوت النبلاء الأوروبية.</p>
+          <div class="item-footer">
+            <span class="item-status">متاح للاقتناء الفوري</span>
+            <button class="btn-outline" style="padding:0.4rem 1rem;" onclick="openDetails('خاتم الزمرد الإمبراطوري والذهب', 'قطعة فنية تجمع بين صفاء الأحجار الكريمة النادرة وعراقة الصياغة الملكية.')">معاينة</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
+
+  <!-- About / Certification Section -->
+  <section id="about" style="background:#080808;">
+    <div class="about-section">
+      <div class="about-image-stack">
+        <img src="https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=1000&q=80" alt="مختبر التوثيق وفحص الأنتيك">
+        <div class="about-badge-card">
+          <h4>اعتماد عالمي للتوثيق</h4>
+          <p style="font-size:0.85rem; color:#bbb;">كل قطعة مصحوبة بشهادة أصالة دقيقة وفحص أطياف الكربون والمسكوكات.</p>
+        </div>
+      </div>
+
+      <div>
+        <div class="section-subtitle">Our Heritage</div>
+        <h2 class="section-title">فلسفة دار سوليا في حفظ الذاكرة البشرية</h2>
+        <p class="section-desc">
+          لا نقتني التحف لمجرد قيمتها المادية، بل نحافظ على الشواهد الحية لتاريخ الحضارات الإنسانية. يضم فريقنا خبراء ومؤرخين مرموقين في علم المسكوكات (Numismatics) وهواية الطوابع (Philately).
+        </p>
+
+        <ul class="about-features">
+          <li>
+            <div class="feature-icon">🛡️</div>
+            <div>
+              <strong style="color:#fff;">شهادات أصالة مدى الحياة (COA)</strong>
+              <p style="font-size:0.88rem; color:#aaa;">ضمان قانوني وأكاديمي غير مشروط لمصدر كل قطعة وتاريخ صناعتها.</p>
+            </div>
+          </li>
+          <li>
+            <div class="feature-icon">🔍</div>
+            <div>
+              <strong style="color:#fff;">تحليل علمي ومجهري دقيق</strong>
+              <p style="font-size:0.88rem; color:#aaa;">فحص درجات التآكل، عيارات المعادن الثمينة، وأحبار الطوابع التاريخية.</p>
+            </div>
+          </li>
+          <li>
+            <div class="feature-icon">🔒</div>
+            <div>
+              <strong style="color:#fff;">سرية تامة للمعاملات والصفقات</strong>
+              <p style="font-size:0.88rem; color:#aaa;">حماية مطلقة لخصوصية كبار المقتنين وهويات المستثمرين الدوليين.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIP Appointment & Acquisition Form -->
+  <section class="vip-contact" id="contact">
+    <div class="section-header" style="margin-bottom: 2rem;">
+      <div class="section-subtitle">Private Consultation</div>
+      <h2 class="section-title">طلب حجز معاينة خاصة أو استشارة</h2>
+      <p class="section-desc">نسعد باستقبالك في قاعتنا الخاصة أو ترتيب جلسة تقييم سرية ومباشرة لمقتنياتك النادرة.</p>
+    </div>
+
+    <div class="contact-container">
+      <form id="vipForm" onsubmit="handleFormSubmit(event)">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="clientName">الاسم الكريم / اللقب</label>
+            <input type="text" id="clientName" placeholder="سعادة الأستاذ / ..." required>
+          </div>
+          <div class="form-group">
+            <label for="clientPhone">رقم التواصل المباشر (مع المفتاح الدولي)</label>
+            <input type="tel" id="clientPhone" placeholder="+962 7 XXXX XXXX" dir="ltr" required>
+          </div>
+          <div class="form-group">
+            <label for="clientEmail">البريد الإلكتروني المعتمد</label>
+            <input type="email" id="clientEmail" placeholder="vip@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="interestType">مجال الاهتمام الأساسي</label>
+            <select id="interestType">
+              <option value="coins">المسكوكات والعملات التاريخية</option>
+              <option value="stamps">الطوابع والوثائق الإمبراطورية</option>
+              <option value="watches">الساعات الفاخرة والأنتيك</option>
+              <option value="valuation">طلب تقييم وتوثيق مقتنيات شخصية</option>
+            </select>
+          </div>
+          <div class="form-group full-width">
+            <label for="clientNotes">تفاصيل الاستفسار أو المقتنى المطلوب معاينته</label>
+            <textarea id="clientNotes" rows="4" placeholder="اذكر القطعة التي لفتت انتباهك أو موعد المعاينة المقترح..."></textarea>
+          </div>
+        </div>
+
+        <div style="margin-top:2.5rem; text-align:center;">
+          <button type="submit" class="btn-gold" style="padding:1rem 3rem; font-size:1.05rem;">
+            إرسال طلب المعاينة السرية
+          </button>
+          <p id="formFeedback" style="color:var(--gold-primary); margin-top:1rem; font-size:0.95rem; display:none;"></p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- PWA Install Prompt Banner -->
+  <div id="pwa-banner">
+    <div>
+      <p style="font-weight:700;">تطبيق دار سوليا للمقتنيات</p>
+      <p style="color:#aaa; font-size:0.8rem;">تثبيت المنصة على جوالك للوصول السريع للمقتنيات</p>
+    </div>
+    <div style="display:flex; gap:0.5rem;">
+      <button class="btn-gold" style="padding:0.4rem 1rem; font-size:0.85rem;" onclick="installPWA()">تثبيت</button>
+      <button class="btn-outline" style="padding:0.4rem 0.8rem; font-size:0.85rem;" onclick="document.getElementById('pwa-banner').style.display='none'">إغلاق</button>
+    </div>
+  </div>
+
+  <!-- Item Modal -->
+  <div class="modal" id="detailsModal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal()">&times;</button>
+      <h3 id="modalTitle" style="color:var(--gold-primary); font-size:1.8rem; margin-bottom:1rem;"></h3>
+      <p id="modalDesc" style="color:#ddd; line-height:1.8; margin-bottom:1.5rem;"></p>
+      <div style="display:flex; gap:1rem; justify-content:flex-end;">
+        <a href="#contact" class="btn-gold" onclick="closeModal()">طلب معاينة فورية للقطعة</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div>
+        <div class="brand-logo" style="margin-bottom: 1.2rem;">
+          <svg viewBox="0 0 24 24" style="width:30px; height:30px; fill:#d4af37;">
+            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+          </svg>
+          <span class="brand-logo-text" style="font-size:1.4rem;">SOLÉA</span>
+        </div>
+        <p style="color:var(--text-muted); font-size:0.9rem; line-height:1.8; max-width:320px;">
+          دار سوليا الدولية للمقتنيات النادرة والوثائق التاريخية. نوثق التاريخ لنخلد قيمته للأجيال القادمة.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h5>أقسام الخزينة</h5>
+        <ul class="footer-links">
+          <li><a href="#vault">المسكوكات الذهبية والفضية</a></li>
+          <li><a href="#vault">الطوابع التاريخية الكلاسيكية</a></li>
+          <li><a href="#vault">المخطوطات والمجلدات النادرة</a></li>
+          <li><a href="#vault">ساعات الجيب والمجوهرات</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>خدمات الخبراء</h5>
+        <ul class="footer-links">
+          <li><a href="#about">فحص المطيافية والأصالة</a></li>
+          <li><a href="#about">تقييم المجموعات الخاصة</a></li>
+          <li><a href="#contact">المزايدات الخاصة والمغلقة</a></li>
+          <li><a href="#contact">حفظ المقتنيات في الخزائن</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>قنوات التواصل الرسمية</h5>
+        <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:0.6rem;">
+          الهاتف المباشر: <span dir="ltr" style="color:var(--gold-primary); font-weight:600;">+962 7 9000 0000</span>
+        </p>
+        <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1rem;">
+          البريد المعتمد: <span dir="ltr" style="color:#dedede;">curator@solea-vault.com</span>
+        </p>
+        <p style="font-size:0.8rem; color:#888;">
+          محفظة الدفع الرسمية (Tron TRC20 فقط):<br>
+          <span dir="ltr" style="color:var(--gold-primary); font-family:monospace; font-size:0.75rem; word-break:break-all;">TYtWeZ6Xf9a8uACp35Bv2BpgmZjrHt8mTG</span>
+        </p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>© 2025 Soléa Heritage & Rare Collectibles. جميع الحقوق محفوظة.</div>
+      <div style="display:flex; gap:1.5rem;">
+        <a href="#" style="color:var(--text-muted); text-decoration:none;">سياسة السرية التامة</a>
+        <a href="#" style="color:var(--text-muted); text-decoration:none;">شروط التوثيق والضمان</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Gallery Filter
+    function filterVault(cat) {
+      const items = document.querySelectorAll('.item-card');
+      const buttons = document.querySelectorAll('.filter-btn');
+      
+      buttons.forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+
+      items.forEach(item => {
+        if (cat === 'all' || item.getAttribute('data-category') === cat) {
+          item.style.display = 'flex';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
+    // Modal Control
+    function openDetails(title, desc) {
+      document.getElementById('modalTitle').innerText = title;
+      document.getElementById('modalDesc').innerText = desc;
+      document.getElementById('detailsModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('detailsModal').style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+      const modal = document.getElementById('detailsModal');
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+    };
+
+    // Form Submission
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      const feedback = document.getElementById('formFeedback');
+      feedback.style.display = 'block';
+      feedback.innerText = 'تم تسجيل طلبك بنجاح وسرية تامة. سيتواصل معك أمين الخزينة لتأكيد الموعد.';
+      document.getElementById('vipForm').reset();
+    }
+
+    // PWA Install Prompt Handler
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      document.getElementById('pwa-banner').style.display = 'flex';
+    });
+
+    function installPWA() {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then((choiceResult) => {
+          if (choiceResult.outcome === 'accepted') {
+            document.getElementById('pwa-banner').style.display = 'none';
+          }
+          deferredPrompt = null;
+        });
+      }
+    }
+  </script>
 </body>
 </html>
 ```

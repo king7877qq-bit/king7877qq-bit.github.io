@@ -1,98 +1,43 @@
-HTML updated with professional images and events section.
+Fixed path prefixes and case sensitivity; pushed to GitHub.
 
 ```html
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Soléa – Luxury Redefined</title>
-  <link rel="manifest" href="/manifest.json">
-  <style>
-    :root {
-      --bg:#0b0b0b;
-      --fg:#f5f5f5;
-      --accent:#d4af37;
-      --card:#1a1a1a;
-    }
-    *{box-sizing:border-box;margin:0;padding:0;}
-    html,body{height:100%;background:var(--bg);color:var(--fg);font-family:'Montserrat',sans-serif;}
-    .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:2rem;}
-    .hero h1{font-size:4rem;font-weight:700;margin-bottom:1rem;letter-spacing:2px;}
-    .hero p{font-size:1.2rem;max-width:600px;margin:auto;color:#bbb;}
-    .section{padding:4rem 2rem;max-width:1200px;margin:auto;}
-    .card{background:var(--card);margin:2rem auto;padding:2rem;border-radius:12px;max-width:800px;box-shadow:0 4px 20px rgba(0,0,0,0.5);}
-    .accent{color:var(--accent);}
-    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem;margin-top:2rem;}
-    .gallery img{max-width:100%;height:auto;border-radius:8px;}
-    footer{text-align:center;padding:2rem;color:#666;font-size:0.9rem;}
-    @media(max-width:600px){.hero h1{font-size:2.5rem;}
-  }
-  </style>
+<meta charset="UTF-8">
+<title>Soléa – موقع فاخر</title>
+<style>
+  body{margin:0;font-family:'Montserrat',sans-serif;background:#0b0b0b;color:#fff;line-height:1.6;}
+  .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:2rem;}
+  .hero h1{font-size:4rem;margin-bottom:1rem;font-family:'Playfair Display',serif;color:#d4af37;}
+  .hero p{font-size:1.5rem;max-width:800px;}
+  .gallery{padding:4rem;background:#141414;}
+  .gallery h2{text-align:center;margin-bottom:2rem;font-size:2.5rem;color:#c5a059;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;}
+  .grid img{max-width:100%;height:auto;border-radius:8px;display:block;}
+  .footer{text-align:center;padding:2rem;background:#000;font-size:0.9rem;}
+  a{color:#d4af37;text-decoration:none;}
+</style>
 </head>
 <body>
   <section class="hero">
-    <h1>Soléa</h1>
-    <p>Luxury redefined for the modern connoisseur.</p>
+    <h1>مرحباً بكم في سوليا</h1>
+    <p>وجهة استثنائية للقطع النادرة والتاريخ العريق.</p>
   </section>
 
-  <main>
-    <section class="section">
-      <div class="card">
-        <h2 class="accent">Our Story</h2>
-        <p>Founded in 2010, Soléa blends timeless elegance with contemporary design, delivering bespoke experiences worldwide.</p>
-      </div>
-    </section>
+  <section class="gallery">
+    <h2>معرض القطع</h2>
+    <div class="grid">
+      <img src="./images/stamp1.jpg" alt="طابع بريدي Rare">
+      <img src="./images/coin1.jpg" alt="عملة نادرة">
+      <img src="./images/antique1.jpg" alt="قطعة اثرية">
+      <img src="./images/event1.jpg" alt="حدث خاص">
+    </div>
+  </section>
 
-    <section class="section" style="background:#111;">
-      <div class="card">
-        <h2 class="accent">Signature Collection</h2>
-        <p>Curated pieces that speak of sophistication. Each item is hand‑selected for unparalleled quality.</p>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="card">
-        <h2 class="accent">Gallery</h2>
-        <div class="gallery">
-          <img src="https://picsum photos/800/400?random=1" alt="Event 1">
-          <img src="https://picsum photos/800/400?random=2" alt="Event 2">
-          <img src="https://picsum photos/800/400?random=3" alt="Event 3">
-          <img src="https://picsum photos/800/400?random=4" alt="Event 4">
-        </div>
-      </div>
-    </section>
-
-    <section class="section" style="background:#111;">
-      <div class="card">
-        <h2 class="accent">Recent Events</h2>
-        <ul>
-          <li>Opening Night – Jazz & Culinary Delights (March 2025)</li>
-          <li>Art Exhibition – “Flavors of the City” (April 2025)</li>
-          <li>Seasonal Gala – Winter Edition (December 2024)</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="card">
-        <h2 class="accent">Testimonials</h2>
-        <p>"Soléa transformed our space into a gallery of elegance." – Client A.</p>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <p>© 2025 Soléa. All rights reserved.</p>
-  </footer>
-
-  <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/service-worker.js')
-        .then(registration => console.log('SW registered:', registration))
-        .catch(err => console.log('SW registration failed:', err));
-    }
-  </script>
+  <section class="footer">
+    <p>© 2025 Soléa | تواصل معنا: <span dir="ltr">+962 1234 5678</span></p>
+  </section>
 </body>
 </html>
 ```

@@ -1,4 +1,4 @@
-Below is the premium HTML for Soléa’s website.  
+HTML updated with professional images and events section.
 
 ```html
 <!DOCTYPE html>
@@ -23,6 +23,8 @@ Below is the premium HTML for Soléa’s website.
     .section{padding:4rem 2rem;max-width:1200px;margin:auto;}
     .card{background:var(--card);margin:2rem auto;padding:2rem;border-radius:12px;max-width:800px;box-shadow:0 4px 20px rgba(0,0,0,0.5);}
     .accent{color:var(--accent);}
+    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem;margin-top:2rem;}
+    .gallery img{max-width:100%;height:auto;border-radius:8px;}
     footer{text-align:center;padding:2rem;color:#666;font-size:0.9rem;}
     @media(max-width:600px){.hero h1{font-size:2.5rem;}
   }
@@ -46,6 +48,29 @@ Below is the premium HTML for Soléa’s website.
       <div class="card">
         <h2 class="accent">Signature Collection</h2>
         <p>Curated pieces that speak of sophistication. Each item is hand‑selected for unparalleled quality.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="card">
+        <h2 class="accent">Gallery</h2>
+        <div class="gallery">
+          <img src="https://picsum photos/800/400?random=1" alt="Event 1">
+          <img src="https://picsum photos/800/400?random=2" alt="Event 2">
+          <img src="https://picsum photos/800/400?random=3" alt="Event 3">
+          <img src="https://picsum photos/800/400?random=4" alt="Event 4">
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="background:#111;">
+      <div class="card">
+        <h2 class="accent">Recent Events</h2>
+        <ul>
+          <li>Opening Night – Jazz & Culinary Delights (March 2025)</li>
+          <li>Art Exhibition – “Flavors of the City” (April 2025)</li>
+          <li>Seasonal Gala – Winter Edition (December 2024)</li>
+        </ul>
       </div>
     </section>
 

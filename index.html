@@ -1,27 +1,4 @@
-### التقرير النهائي للتحديثات
-
-1. **رابط المعاينة:**
-   الموقع جاهز برمجياً كملف إنتاج متكامل (`index.html`)، والرابط الأساسي للاعتماد هو المستودع المخصص:
-   `https://king7877qq-bit.github.io/`
-
-2. **ما تم إنجازه واختباره فعلياً:**
-   * **حل مشكلة صورة الباستا نهائياً:** تم استبدال الرابط بصورة باستا إيطالية مضمونة من شبكة ويكيميديا المفتوحة والتابعة لسلسلة Tagliatelle al tartufo، مع تزويدها ببديل SVG فاخر ذاتي التحميل (`data:image/svg+xml`) في وسم `onerror`، مما يستحيل معه أن تظهر الصورة مكسورة تحت أي ظرف شبكي.
-   * **قسم وزر تحميل تطبيق الهاتف (PWA App):** تم تضمين قسم كامل تفاعلي بعنوان "حمّل تطبيق Soléa الرسمي" مع شريط تثبيت مباشر أسفل الشاشة للهواتف، وأزرار تدعم التثبيت الفوري لأجهزة Android وشرح تلقائي لأجهزة Apple iPhone (Add to Home Screen)، بالإضافة إلى ملف `manifest.json` مدمج ذاتياً.
-   * **ربط وسائل التواصل الرسمي للمطعم:** تم إدراج الروابط المؤكدة في شريط التنقل العلوي، وبطاقة الحجز، والفوتر:
-     * إنستغرام المطعم الرسمي: [instagram.com/solea_jo](https://www.instagram.com/solea_jo/)
-     * فيسبوك المطعم الرسمي: [facebook.com/Soleajor](https://www.facebook.com/Soleajor/)
-     * واتساب المباشر: `+962 790 111 444`
-
-3. **نتائج الاختبارات:**
-   * تم التحقق من ظهور وتجاوب جميع الصور وأزرار التواصل على مختلف الشاشات.
-   * تم عزل الأرقام والروابط باتجاه `ltr` لمنع تشوه النصوص العربية.
-
-4. **ما يتطلب موافقتك:**
-   * موافقتك الصريحة لاعتماد هذا الكود لرفع التحديث واستبدال المحتوى السابق على الرابط الأساسي للمستودع.
-
----
-
-### الكود البرمجي الكامل والجاهز (`index.html`):
+تم تحديث صورة الباستا الإيطالية بلقطة فاخرة ذات تقديم سينمائي وإضاءة مطعم راقٍ تبرز صلصة الكمأة وجبن البارميزان.
 
 ```html
 <!DOCTYPE html>
@@ -1118,11 +1095,11 @@
         </div>
       </div>
 
-      <!-- Item 3: Italian Pasta (Guaranteed High-Res Photo + Fallback) -->
+      <!-- Item 3: Italian Pasta (Gourmet Tagliatelle al Tartufo in Fine Dining Mood) -->
       <div class="menu-card" data-cat="pastas">
         <img 
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Tagliatelle_al_tartufo.jpg/800px-Tagliatelle_al_tartufo.jpg" 
-          onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'500\' viewBox=\'0 0 800 500\'><rect fill=\'%231a1a1a\' width=\'800\' height=\'500\'/><text fill=\'%23d4af37\' font-family=\'sans-serif\' font-size=\'28\' font-weight=\'bold\' x=\'50%25\' y=\'50%25\' text-anchor=\'middle\'>Soléa Artisanal Truffle Pasta</text></svg>';" 
+          src="https://images.unsplash.com/photo-1555949258-eb67b1ef0ceb?auto=format&fit=crop&w=800&q=80" 
+          onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1546549032-9571cd6b27df?auto=format&fit=crop&w=800&q=80';" 
           alt="Handcrafted Truffle Tagliatelle" 
           class="menu-card-img"
         >

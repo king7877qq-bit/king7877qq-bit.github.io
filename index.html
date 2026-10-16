@@ -1306,20 +1306,20 @@
           <div class="form-group">
             <label for="guestCount" data-key="form_guests">عدد الأشخاص *</label>
             <select id="guestCount" required>
-              <option value="2">شخصان (2)</option>
-              <option value="3">3 أشخاص</option>
-              <option value="4">4 أشخاص</option>
-              <option value="5">5 أشخاص</option>
-              <option value="6+">6 أشخاص فأكثر</option>
+              <option value="2" data-key="opt_guests_2">شخصان (2)</option>
+              <option value="3" data-key="opt_guests_3">3 أشخاص</option>
+              <option value="4" data-key="opt_guests_4">4 أشخاص</option>
+              <option value="5" data-key="opt_guests_5">5 أشخاص</option>
+              <option value="6+" data-key="opt_guests_6">6 أشخاص فأكثر</option>
             </select>
           </div>
 
           <div class="form-group">
             <label for="tableArea" data-key="form_area">منطقة الجلوس المفضلة</label>
             <select id="tableArea">
-              <option value="Outdoor Terrace">التراس الخارجي (مطل على البوليفارد)</option>
-              <option value="Indoor Lounge">الصالة الداخلية الفاخرة</option>
-              <option value="Smoking Section">منطقة التدخين</option>
+              <option value="Outdoor Terrace" data-key="opt_area_outdoor">التراس الخارجي (مطل على البوليفارد)</option>
+              <option value="Indoor Lounge" data-key="opt_area_indoor">الصالة الداخلية الفاخرة</option>
+              <option value="Smoking Section" data-key="opt_area_smoking">منطقة التدخين</option>
             </select>
           </div>
 
@@ -1485,6 +1485,14 @@
         form_notes: "ملاحظات أو طلبات خاصة (مناسبة خاصة، حساسية طعام...)",
         form_notes_placeholder: "اكتب ملاحظاتك هنا إن وجدت...",
         form_submit: "إرسال وتأكيد الحجز عبر واتساب",
+        opt_guests_2: "شخصان (2)",
+        opt_guests_3: "3 أشخاص",
+        opt_guests_4: "4 أشخاص",
+        opt_guests_5: "5 أشخاص",
+        opt_guests_6: "6 أشخاص فأكثر",
+        opt_area_outdoor: "التراس الخارجي (مطل على البوليفارد)",
+        opt_area_indoor: "الصالة الداخلية الفاخرة",
+        opt_area_smoking: "منطقة التدخين",
         footer_about_text: "مطعم ومقهى سوليا في بوليفارد العبدلي، عمّان. نكهات تذوب، ودفء تشعر به مع أرقى إطلالة بانورامية وخدمة عالمية المستوى.",
         footer_quick_links: "روابط سريعة",
         footer_categories: "القوائم",
@@ -1578,6 +1586,14 @@
         form_notes: "Special Requests (Anniversary, dietary preferences...)",
         form_notes_placeholder: "Write your notes here if any...",
         form_submit: "Confirm & Send via WhatsApp",
+        opt_guests_2: "2 people",
+        opt_guests_3: "3 people",
+        opt_guests_4: "4 people",
+        opt_guests_5: "5 people",
+        opt_guests_6: "6+ people",
+        opt_area_outdoor: "Outdoor Terrace (Boulevard View)",
+        opt_area_indoor: "Indoor Lounge",
+        opt_area_smoking: "Smoking Section",
         footer_about_text: "Soléa Restaurant & Café at Abdali Boulevard, Amman. Flavor That Melts, Warmth You Feel with sweeping skyline views.",
         footer_quick_links: "Quick Links",
         footer_categories: "Menus",
@@ -1612,6 +1628,8 @@
             el.innerHTML = translations[lang][key];
           } else if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
             el.placeholder = translations[lang][key];
+          } else if (el.tagName === 'OPTION') {
+            el.text = translations[lang][key];
           } else {
             el.innerText = translations[lang][key];
           }
@@ -1688,7 +1706,7 @@
         }
         deferredPrompt = null;
       } else {
-        alert(currentLang === 'ar' 
+        alert(currentLang === 'ar'
           ? "لتثبيت التطبيق على جهازك:\n- على iPhone: اضغط زر المشاركة (Share) في Safari واختر 'إضافة إلى الصفحة الرئيسية (Add to Home Screen)'.\n- على Android: اضغط قائمة المتصفح (⋮) ثم اختر 'تثبيت التطبيق'."
           : "To install this app on your phone:\n- iPhone: Tap the Share button in Safari and choose 'Add to Home Screen'.\n- Android: Tap the browser menu (⋮) and select 'Install app'.");
       }
@@ -1697,7 +1715,7 @@
     directInstallBtn.addEventListener('click', promptInstall);
     androidBtn.addEventListener('click', promptInstall);
     appleBtn.addEventListener('click', () => {
-      alert(currentLang === 'ar' 
+      alert(currentLang === 'ar'
         ? "مستخدمي أبل iOS:\nاضغط على أيقونة المشاركة (Share) في متصفح Safari، ثم اختر 'إضافة إلى الشاشة الرئيسية (Add to Home Screen)' ليظهر تطبيق Soléa فوراً على شاشتك."
         : "Apple iOS Users:\nTap the Share icon at the bottom of Safari, then choose 'Add to Home Screen' to install Soléa directly.");
     });
@@ -1725,4 +1743,4 @@
     document.head.appendChild(manifestLink);
   </script>
 </body>
-</html>
+</html>,

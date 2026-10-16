@@ -5,67 +5,165 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Fredovanta Digital</title>
 <style>
-  body {font-family: Arial, sans-serif; margin:0; padding:0; transition: background 0.3s;}
-  body.lang-ar {direction: rtl; font-family: 'Tahoma', sans-serif;}
-  .lang-en, .lang-ar {padding: 1rem; }
-  .lang-en {display: block;}
-  .lang-ar {display: none;}
-  body.lang-ar .lang-en {display: none;}
-  body.lang-ar .lang-ar {display: block;}
-  body.lang-en.lang-ar .lang-en {display: none;}
-  body.lang-ar.lang-en .lang-ar {display: none;}
-  body.lang-en.lang-en .lang-en {display: block;}
-  nav {background:#333; color:#fff; padding:0.5rem;}
-  nav a {color:#fff; margin-right:1rem; text-decoration:none;}
-  .lang-toggle {background:#007bff; color:#fff; border:none; padding:0.5rem 1rem; cursor:pointer;}
+  :root {
+    --primary:#0066cc;
+    --dark:#003366;
+    --light:#f5f5f5;
+    --gray:#666;
+  }
+  * {box-sizing:border-box;}
+  body {margin:0;font-family:Arial,Helvetica,sans-serif;line-height:1.6;color:#333;background:#fff;}
+  body[lang="ar"] {direction:rtl;font-family:'Tahoma',sans-serif;}
+  header {background:var(--primary);color:#fff;padding:1rem;text-align:center;}
+  nav {background:var(--dark);color:#fff;display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;}
+  nav a {color:#fff;text-decoration:none;padding:0.5rem 1rem;}
+  nav a:hover {background:#004c99;}
+  .container {max-width:1200px;margin:auto;padding:1rem;}
+  .lang-toggle {position:fixed;top:1rem;right:1rem;background:#fff;border:1px solid var(--primary);color:var(--primary);padding:0.5rem 1rem;cursor:pointer;border-radius:4px;}
+  section {padding:2rem 0;border-bottom:1px solid #eee;}
+  section:nth-child(even) {background:var(--light);}
+  h2 {color:var(--primary);margin-top:0;}
+  .btn {display:inline-block;background:var(--primary);color:#fff;padding:0.75rem 1.5rem;border:none;border-radius:4px;text-decoration:none;cursor:pointer;margin-top:1rem;}
+  .btn:hover {background:var(--dark);}
+  form label {display:block;margin-top:1rem;}
+  form input, form textarea {width:100%;padding:0.5rem;margin-top:0.5rem;border:1px solid #ccc;border-radius:4px;}
+  @media (max-width:600px) {
+    nav {flex-direction:column;align-items:stretch;}
+    nav a {text-align:center;}
+  }
 </style>
 </head>
-<body class="en">
-<button class="lang-toggle" onclick="toggleLang()">العربية</button>
+<body>
+<header>
+  <h1>Fredovanta Digital</h1>
+  <p>Professional Digital Solutions</p>
+</header>
+<button class="lang-toggle" id="langToggle">العربية</button>
 <nav>
-  <a href="#">Home</a>
-  <a href="#">Services</a>
-  <a href="#">How We Work</a>
-  <a href="#">About</a>
-  <a href="#">Quote</a>
-  <a href="#">Contact</a>
+  <a href="#home">Home</a>
+  <a href="#services">Services</a>
+  <a href="#how">How We Work</a>
+  <a href="#about">About</a>
+  <a href="#quote">Quote</a>
+  <a href="#contact">Contact</a>
 </nav>
 
-<div class="lang-en">
-  <h1>Welcome to Fredovanta Digital</h1>
-  <p>We provide professional digital solutions for businesses.</p>
-</div>
-<div class="lang-ar">
-  <h1>مرحبا بكم في فريدوفانتا ديجيتال</h1>
-  <p>نقدم حلول رقمية احترافية للcompanies.</p>
-</div>
+<section id="home" class="lang-en">
+  <h2>Welcome</h2>
+  <p>We help businesses grow online with custom websites, SEO, and digital marketing.</p>
+</section>
+<section id="home" class="lang-ar">
+  <h2>مرحباً</h2>
+  <p>نساعد الشركات على النمو عبر الإنترنت من خلال مواقع مخصصة، تحسين محركات البحث، والتسويق الرقمي.</p>
+</section>
 
-<section class="lang-en">
+<section id="services" class="lang-en">
   <h2>Our Services</h2>
-  <p>Web Design, Development, SEO, Consulting.</p>
+  <p>Web Design & Development, UI/UX, SEO, Content Strategy, Digital Advertising.</p>
 </section>
-<section class="lang-ar">
+<section id="services" class="lang-ar">
   <h2>خدماتنا</h2>
-  <p>مجموعات، تطوير، تحسين محركات البحث، الاستشارات.</p>
+  <p>تصميم وتطوير الويب، تجربة المستخدم، تحسين محركات البحث، استراتيجية المحتوى، الإعلان الرقمي.</p>
 </section>
 
-<!-- Additional sections can be added similarly -->
+<section id="how" class="lang-en">
+  <h2>How We Work</h2>
+  <ol>
+    <li>Discovery – understand your goals.</li>
+    <li>Design – create wireframes and mockups.</li>
+    <li>Development – build and test.</li>
+    <li>Launch – deploy and train.</li>
+    <li>Support – ongoing maintenance.</li>
+  </ol>
+</section>
+<section id="how" class="lang-ar">
+  <h2>كيف نعمل</h2>
+  <ol>
+    <li>اكتشاف – فهم أهدافك.</li>
+    <li>تصميم – إنشاء إطارات ونماذج أولية.</li>
+    <li>تطوير – بناء واختبار.</li>
+    <li>إطلاق – نشر وتدريب.</li>
+    <li>دعم – صيانة مستمرة.</li>
+  </ol>
+</section>
 
-</body>
+<section id="about" class="lang-en">
+  <h2>About Us</h2>
+  <p>Fredovanta Digital is a team of passionate designers and developers dedicated to delivering high-quality digital products that drive results.</p>
+</section>
+<section id="about" class="lang-ar">
+  <h2>من نحن</h2>
+  <p>فريدوفانتا ديجيتال فريق من المصممين والمطورين الشغوفين الملتزمين بتقديم منتجات رقمية عالية الجودة تحقق النتائج.</p>
+</section>
+
+<section id="quote" class="lang-en">
+  <h2>Request a Quote</h2>
+  <form id="quoteForm">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+    <label for="project">Project Description:</label>
+    <textarea id="project" name="project" rows="4" required></textarea>
+    <button type="submit" class="btn">Send Request</button>
+  </form>
+</section>
+<section id="quote" class="lang-ar">
+  <h2>اطلب عرض سعر</h2>
+  <form id="quoteForm">
+    <label for="name">الاسم:</label>
+    <input type="text" id="name" name="name" required>
+    <label for="email">البريد الإلكتروني:</label>
+    <input type="email" id="email" name="email" required>
+    <label for="project">وصف المشروع:</label>
+    <textarea id="project" name="project" rows="4" required></textarea>
+    <button type="submit" class="btn">إرسال الطلب</button>
+  </form>
+</section>
+
+<section id="contact" class="lang-en">
+  <h2>Contact Us</h2>
+  <p>Email: <a href="mailto:info@fredovanta.com">info@fredovanta.com</a></p>
+  <p>Phone: +1 (555) 123-4567</p>
+</section>
+<section id="contact" class="lang-ar">
+  <h2>اتصل بنا</h2>
+  <p>البريد الإلكتروني: <a href="mailto:info@fredovanta.com">info@fredovanta.com</a></p>
+  <p>الهاتف: +1 (555) 123-4567</p>
+</section>
+
+<footer style="text-align:center;padding:1rem;background:#222;color:#fff;font-size:0.9rem;">
+  &copy; <span id="year"></span> Fredovanta Digital. All rights reserved.
+</footer>
+
 <script>
-function toggleLang() {
-  const body = document.body;
-  if (body.classList.contains('en')) {
-    body.classList.remove('en');
-    body.classList.add('ar');
-    document.documentElement.setAttribute('lang', 'ar');
-    document.documentElement.setAttribute('dir', 'rtl');
-  } else {
-    body.classList.remove('ar');
-    body.classList.add('en');
-    document.documentElement.setAttribute('lang', 'en');
-    document.documentElement.setAttribute('dir', 'ltr');
+document.addEventListener('DOMContentLoaded', function() {
+  const year = new Date().getFullYear();
+  document.getElementById('year').textContent = year;
+  const toggle = document.getElementById('langToggle');
+  const html = document.documentElement;
+  toggle.addEventListener('click', function() {
+    const isEn = html.lang === 'en';
+    if (isEn) {
+      html.lang = 'ar';
+      html.dir = 'rtl';
+      toggle.textContent = 'English';
+    } else {
+      html.lang = 'en';
+      html.dir = 'ltr';
+      toggle.textContent = 'العربية';
+    }
+  });
+  // Handle form submission (prevent actual send for demo)
+  const form = document.getElementById('quoteForm');
+  if (form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Thank you! Your request has been received (demo).');
+      form.reset();
+    });
   }
-}
+});
 </script>
+</body>
 </html>

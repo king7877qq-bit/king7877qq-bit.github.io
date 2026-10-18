@@ -7,7 +7,7 @@
   <title>Fredovanta Digital | Strategic Digital Agency</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #030304;
@@ -31,13 +31,13 @@
     }
 
     [data-lang="ar"] {
-      --font-heading: "Syne", "Noto Sans Arabic", system-ui, sans-serif;
-      --font-body: "Inter", "Noto Sans Arabic", system-ui, sans-serif;
+      --font-heading: "Cairo", system-ui, sans-serif;
+      --font-body: "Cairo", system-ui, sans-serif;
       direction: rtl;
     }
 
     [data-lang="en"] {
-      --font-heading: "Syne", system-ui, sans-serif;
+      --font-heading: "Inter", system-ui, sans-serif;
       --font-body: "Inter", system-ui, sans-serif;
       direction: ltr;
     }
@@ -238,7 +238,7 @@
       background: var(--bg-elevated); color: var(--fg); border: 1px solid var(--border);
     }
     .btn--secondary:hover { border-color: var(--accent); background: var(--accent-subtle); transform: translateY(-2px); }
-    .btn--secondary:focus-visible { outline: 2pxolid var(--accent); outline-offset: 3px; }
+    .btn--secondary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
     .btn--ghost { background: transparent; color: var(--fg-muted); border: 1px solid transparent; }
     .btn--ghost:hover { color: var(--fg); border-color: rgba(212,168,67,0.3); background: var(--accent-subtle); }
 
@@ -253,6 +253,13 @@
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes bounce { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(8px); } }
+
+    /* ===== Hero Stats ===== */
+    .hero__stats { position: relative; z-index: 1; padding: 40px 0; }
+    .hero__stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .stat { text-align: center; }
+    .stat__value { font-family: var(--font-heading); font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; color: var(--accent); line-height: 1.1; }
+    .stat__label { font-size: 0.875rem; color: var(--fg-muted); margin-top: 4px; }
 
     /* ===== Section Base ===== */
     .section { padding: 100px 0; position: relative; }
@@ -355,13 +362,7 @@
     .footer__legal-link { color: var(--fg-muted); font-size: 0.875rem; transition: color var(--transition-fast); }
     .footer__legal-link:hover { color: var(--accent); }
 
-    /* ===== Mobile Navigation ===== */
-    .mobile-nav { position: fixed; top: var(--header-h); left: 0; right: 0; bottom: 0; z-index: 999; background: var(--bg); z-index: 999; transform: translateY(-100%); transition: transform var(--transition-slow); overflow-y: auto; padding: 32px 24px; border-bottom: 1px solid var(--border); }
-    .mobile-nav--open { transform: translateY(0); }
-    .mobile-nav__list { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 32px; }
-    .mobile-nav__link { display: block; padding: 16px 20px; font-size: 1.125rem; font-weight: 500; color: var(--fg); border-radius: var(--radius-md); background: var(--card); border: 1px solid var(--border); transition: all var(--transition-base); }
-    .mobile-nav__link:hover { background: var(--accent-subtle); border-color: var(--accent); color: var(--accent); }
-    .mobile-nav__cta { display: block; text-align: center; margin-top: 16px; }
+    /* ===== Mobile Navigation (duplicate removed) ===== */
 
     /* ===== Reduced Motion ===== */
     @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; } }
@@ -382,6 +383,7 @@
       .footer__links { align-items: center; }
       .footer__bottom { flex-direction: column; text-align: center; }
       .footer__legal { justify-content: center; }
+      .hero__stats-grid { grid-template-columns: 1fr; gap: 16px; }
     }
     @media (max-width: 768px) {
       .nav__list, .nav__cta, .lang-toggle { display: none; }
@@ -405,6 +407,7 @@
       .about__visual-stats { grid-template-columns: 1fr; }
       .stat { font-size: 2rem; }
       .value-item { flex-direction: column; align-items: center; text-align: center; }
+      .hero__stats-grid { grid-template-columns: 1fr; }
     }
 
     /* ===== Scroll Reveal ===== */
@@ -470,9 +473,7 @@
       <div class="hero__bg-pattern" aria-hidden="true"></div>
       <div class="container hero__content">
         <div class="hero__badge" data-i18n="hero.badge">Strategic Digital Agency</div>
-        <h1 id="hero-title" class="hero__title">
-          We build digital products <br>that <span class="hero__title--accent" data-i18n="hero.titleAccent">drive growth</span>
-        </h1>
+        <h1 id="hero-title" class="hero__title" data-i18n="hero.titleFull">We build digital products that drive growth</h1>
         <p class="hero__description" data-i18n="hero.description">Fredovanta Digital partners with ambitious businesses to design, develop, and scale custom web solutions, brand identities, and growth strategies that deliver measurable results.</p>
         <div class="hero__actions">
           <a href="#contact" class="btn btn--primary" data-i18n="hero.ctaPrimary">Start a Project</a>
@@ -488,7 +489,7 @@
     <!-- Hero Stats -->
     <div class="hero__stats" role="list" aria-label="Company statistics">
       <div class="container">
-        <div class="hero__stats-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
+        <div class="hero__stats-grid">
           <div class="stat" role="listitem">
             <div class="stat__value" data-count="50">50+</div>
             <div class="stat__label" data-i18n="stats.projects">Projects Delivered</div>
@@ -886,7 +887,7 @@
             "nav.getQuote": "Get a Quote",
             "lang.toggle": "AR",
             "hero.badge": "Strategic Digital Agency",
-            "hero.titleAccent": "drive growth",
+            "hero.titleFull": "We build digital products that drive growth",
             "hero.description": "Fredovanta Digital partners with ambitious businesses to design, develop, and scale custom web solutions, brand identities, and growth strategies that deliver measurable results.",
             "hero.ctaPrimary": "Start a Project",
             "hero.ctaSecondary": "Explore Services",
@@ -981,17 +982,17 @@
           },
           ar: {
             "nav.services": "الخدمات",
-            "nav.process": "العملية",
+            "nav.process": "آلية العمل",
             "nav.about": "من نحن",
-            "nav.contact": "تواصل",
-            "nav.getQuote": "احصل على عرض",
+            "nav.contact": "تواصل معنا",
+            "nav.getQuote": "طلب عرض سعر",
             "lang.toggle": "EN",
             "hero.badge": "وكالة رقمية استراتيجية",
-            "hero.titleAccent": "تدفع النمو",
+            "hero.titleFull": "نصنع منتجات رقمية تدفع عجلة النمو",
             "hero.description": "تتعاون فريدوفانتا ديجيتال مع الشركات الطموحة لتصميم وتطوير وتوسيع حلول الويب المخصصة، وهويات العلامات التجارية، واستراتيجيات النمو التي تحقق نتائج قابلة للقياس.",
-            "hero.ctaPrimary": "ابدأ مشروعاً",
-            "hero.ctaSecondary": "استكشف الخدمات",
-            "hero.scroll": "مرر لأسفل",
+            "hero.ctaPrimary": "ابدأ مشروعك",
+            "hero.ctaSecondary": "استكشف خدماتنا",
+            "hero.scroll": "مرر للأسفل",
             "stats.projects": "مشاريع منجزة",
             "stats.countries": "دول مخدومة",
             "stats.satisfaction": "رضا العملاء",
@@ -1025,16 +1026,16 @@
             "process.step5.desc": "نشر سلس يتبعه مراقبة الأداء، إعداد التحليلات، ودورات تحسين مستمرة.",
             "about.tag": "من نحن",
             "about.title": "هندسة التميز الرقمي",
-            "about.desc1": "تأسست فريدوفانتا ديجيتال علىbelief أن التكنولوجيا يجب أن تضخم الإمكانات البشرية، لا أن تعقدها. نحن فريق متعدد التخصصات من الاستراتيجيين والمصممين والمهندسين متحدون بالالتزام بالحرفية والنتائج القابلة للقياس.",
+            "about.desc1": "تأسست فريدوفانتا ديجيتال على اعتقاد أن التكنولوجيا يجب أن تضخم الإمكانات البشرية، لا أن تعقدها. نحن فريق متعدد التخصصات من الاستراتيجيين والمصممين والمهندسين متحدون بالالتزام بالحرفية والنتائج القابلة للقياس.",
             "about.desc2": "لا نبني مواقع ويب فقط — نبني بنية تحتية رقمية تتوسع مع طموحك. عملاؤنا يتراوحون من الشركات الناشئة الممولة إلى المؤسسات الراسخة في أمريكا الشمالية وأوروبا والشرق الأوسط.",
             "about.stats.years": "سنوات الخبرة",
             "about.stats.team": "أعضاء الفريق",
             "about.stats.clients": "عملاء سعداء",
-            "about.stats.support": "دعم متاح",
+            "about.stats.support": "دعم متاح على مدار الساعة",
             "about.values.integrity.title": "النزاهة أولاً",
             "about.values.integrity.desc": "تواصل شفاف، جداول زمنية صادقة، ولا توجد تكاليف مخفية — أبداً.",
             "about.values.excellence.title": "تميز الحرفية",
-            "about.values.excellence.desc": "اهتمام مرضي بالتفاصيل في كل سطر كود، بكسل، وتفاعل.",
+            "about.values.excellence.desc": "اهتمام دقيق بالتفاصيل في كل سطر كود، بكسل، وتفاعل.",
             "about.values.partnership.title": "شراكة حقيقية",
             "about.values.partnership.desc": "ننجح عندما تنجحون. علاقات طويلة الأمد على حساب المعاملات المنفردة.",
             "about.values.innovation.title": "ابتكار مستمر",
@@ -1120,10 +1121,6 @@
             if (opt.value && dict[`services.${opt.value}.title`]) opt.textContent = dict[`services.${opt.value}.title`];
             if (opt.value && dict[`form.service.${opt.value}`]) opt.textContent = dict[`form.service.${opt.value}`];
           });
-
-          // Update hero title accent separately since it's a span inside h1
-          const heroAccent = document.querySelector('.hero__title--accent');
-          if (heroAccent && dict['hero.titleAccent']) heroAccent.textContent = dict['hero.titleAccent'];
 
           // Update select placeholder options
           document.querySelectorAll('select option[value=""]').forEach(opt => {

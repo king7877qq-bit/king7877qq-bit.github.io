@@ -254,13 +254,6 @@
     @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes bounce { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(8px); } }
 
-    /* ===== Hero Stats ===== */
-    .hero__stats { position: relative; z-index: 1; padding: 40px 0; }
-    .hero__stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-    .stat { text-align: center; }
-    .stat__value { font-family: var(--font-heading); font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; color: var(--accent); line-height: 1.1; }
-    .stat__label { font-size: 0.875rem; color: var(--fg-muted); margin-top: 4px; }
-
     /* ===== Section Base ===== */
     .section { padding: 100px 0; position: relative; }
     .section__header { text-align: center; margin-bottom: 64px; }
@@ -301,10 +294,6 @@
     .about__visual { position: relative; }
     .about__visual-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 48px; position: relative; overflow: hidden; }
     .about__visual-card::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(rgba(16,185,129,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(16,185,129,0.03) 1px, transparent 1px); background-size: 60px 60px; mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%); opacity: 0.5; }
-    .about__visual-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; position: relative; z-index: 1; }
-    .about__visual-stat { text-align: center; padding: 24px; background: var(--bg-elevated); border-radius: var(--radius-md); border: 1px solid var(--border); }
-    .stat { font-family: var(--font-heading); font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; color: var(--accent); line-height: 1.1; }
-    .stat__label { font-size: 0.875rem; color: var(--fg-muted); margin-top: 4px; }
     .about__content { padding: 0 24px; }
     .about__text { color: var(--fg-muted); line-height: 1.8; margin-bottom: 24px; font-size: 1.0625rem; }
     .about__values { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; }
@@ -367,6 +356,7 @@
     .payments__qr-verify { margin-top: 12px; font-size: 0.875rem; color: var(--fg-muted); min-height: 1.5em; }
     .payments__qr-verify--ok { color: #4ade80; }
     .payments__qr-verify--fail { color: #f87171; }
+
     /* ===== Footer ===== */
     .footer { background: var(--bg); border-top: 1px solid var(--border); padding: 64px 0 32px; }
     .footer__grid { display: grid; grid-template-columns: 2fr repeat(3, 1fr); gap: 48px; margin-bottom: 48px; }
@@ -408,7 +398,6 @@
       .footer__links { align-items: center; }
       .footer__bottom { flex-direction: column; text-align: center; }
       .footer__legal { justify-content: center; }
-      .hero__stats-grid { grid-template-columns: 1fr; gap: 16px; }
     }
     @media (max-width: 768px) {
       .nav__list, .nav__cta, .lang-toggle { display: none; }
@@ -421,7 +410,6 @@
       .services__grid { grid-template-columns: 1fr; }
       .process__steps::before { display: none; }
       .process-step__number { position: static; transform: none; margin: 0 auto 24px; }
-      .about__visual-stats { grid-template-columns: 1fr 1fr; }
       .contact-form { padding: 24px; }
       .form-row { grid-template-columns: 1fr; gap: 0; }
       .footer__grid { grid-template-columns: 1fr; }
@@ -432,7 +420,6 @@
       .about__visual-stats { grid-template-columns: 1fr; }
       .stat { font-size: 2rem; }
       .value-item { flex-direction: column; align-items: center; text-align: center; }
-      .hero__stats-grid { grid-template-columns: 1fr; }
     }
 
     /* ===== Scroll Reveal ===== */
@@ -501,7 +488,7 @@
         <h1 id="hero-title" class="hero__title" data-i18n="hero.titleFull">We build digital products that drive growth</h1>
         <p class="hero__description" data-i18n="hero.description">Fredovanta Digital partners with ambitious businesses to design, develop, and scale custom web solutions, brand identities, and growth strategies that deliver measurable results.</p>
         <div class="hero__actions">
-          <a href="#contact" class="btn btn--primary" data-i18n="hero.ctaPrimary">Start a Project</a>
+          <a href="https://wa.me/963997675625" class="btn btn--primary" target="_blank" rel="noopener noreferrer" data-i18n="hero.ctaPrimary">WhatsApp</a>
           <a href="#services" class="btn btn--secondary" data-i18n="hero.ctaSecondary">Explore Services</a>
         </div>
         <div class="hero__scroll" aria-hidden="true">
@@ -510,26 +497,6 @@
         </div>
       </div>
     </section>
-
-    <!-- Hero Stats -->
-    <div class="hero__stats" role="list" aria-label="Company statistics">
-      <div class="container">
-        <div class="hero__stats-grid">
-          <div class="stat" role="listitem">
-            <div class="stat__value" data-count="50">50+</div>
-            <div class="stat__label" data-i18n="stats.projects">Projects Delivered</div>
-          </div>
-          <div class="stat" role="listitem">
-            <div class="stat__value" data-count="12">12+</div>
-            <div class="stat__label" data-i18n="stats.countries">Countries Served</div>
-          </div>
-          <div class="stat" role="listitem">
-            <div class="stat__value" data-count="98">98%</div>
-            <div class="stat__label" data-i18n="stats.satisfaction">Client Satisfaction</div>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <!-- Services -->
     <section id="services" class="section services" aria-labelledby="services-title">
@@ -640,23 +607,8 @@
         <div class="about__grid">
           <div class="about__visual">
             <div class="about__visual-card">
-              <div class="about__visual-stats" role="list" aria-label="Company statistics">
-                <div class="about__visual-stat" role="listitem">
-                  <div class="stat__value" data-count="8">8+</div>
-                  <div class="stat__label" data-i18n="about.stats.years">Years Experience</div>
-                </div>
-                <div class="about__visual-stat" role="listitem">
-                  <div class="stat__value" data-count="15">15</div>
-                  <div class="stat__label" data-i18n="about.stats.team">Team Members</div>
-                </div>
-                <div class="about__visual-stat" role="listitem">
-                  <div class="stat__value" data-count="200">200+</div>
-                  <div class="stat__label" data-i18n="about.stats.clients">Happy Clients</div>
-                </div>
-                <div class="about__visual-stat" role="listitem">
-                  <div class="stat__value" data-count="24">24/7</div>
-                  <div class="stat__label" data-i18n="about.stats.support">Support Available</div>
-                </div>
+              <div class="about__content-inner">
+                <div class="about__tagline" data-i18n="about.tagline">Remote-first digital agency serving clients worldwide.</div>
               </div>
             </div>
           </div>
@@ -666,7 +618,7 @@
               <h2 id="about-title" class="section__title" data-i18n="about.title">Engineering Digital Excellence</h2>
             </header>
             <p class="about__text" data-i18n="about.desc1">Fredovanta Digital was founded on the belief that technology should amplify human potential, not complicate it. We're a multidisciplinary team of strategists, designers, and engineers united by a commitment to craftsmanship and measurable outcomes.</p>
-            <p class="about__text" data-i18n="about.desc2">We don't just build websites — we build digital infrastructure that scales with your ambition. Our clients range from funded startups to established enterprises across North America, Europe, and the Middle East.</p>
+            <p class="about__text" data-i18n="about.desc2">We build digital infrastructure that scales with your ambition. Our clients range from funded startups to established enterprises worldwide.</p>
             <div class="about__values">
               <div class="value-item">
                 <div class="value-item__icon" aria-hidden="true">
@@ -735,17 +687,8 @@
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
                 </div>
                 <div>
-                  <div class="contact-method__label" data-i18n="contact.methods.phone.label">Phone</div>
-                  <a href="tel:+15550199" class="contact-method__value">+1 (555) 019-9000</a>
-                </div>
-              </div>
-              <div class="contact-method">
-                <div class="contact-method__icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                </div>
-                <div>
-                  <div class="contact-method__label" data-i18n="contact.methods.location.label">Location</div>
-                  <address class="contact-method__value" style="font-style: normal;">San Francisco, CA — Remote First</address>
+                  <div class="contact-method__label" data-i18n="contact.methods.whatsapp.label">WhatsApp</div>
+                  <a href="https://wa.me/963997675625" class="contact-method__value" target="_blank" rel="noopener noreferrer">+963 997 675 625</a>
                 </div>
               </div>
             </div>
@@ -833,7 +776,7 @@
       <div class="container">
         <div class="payments__grid">
           <div class="payments__card">
-            <h2 id="payments-title" class="payments__title" data-i18n="payments.title">Payments &amp; Support</h2>
+            <h2 id="payments-title" class="payments__title" data-i18n="payments.title">Payments & Support</h2>
             <p class="payments__description" data-i18n="payments.description">We accept payments in USDT on the TRON network (TRC20). Please verify the address and network before sending funds.</p>
 
             <div class="payments__address-card">
@@ -873,8 +816,8 @@
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
               </div>
               <div>
-                <div class="contact-method__label" data-i18n="contact.methods.phone.label">Phone</div>
-                <a href="tel:+15550199" class="contact-method__value">+1 (555) 019-9000</a>
+                <div class="contact-method__label" data-i18n="contact.methods.whatsapp.label">WhatsApp</div>
+                <a href="https://wa.me/963997675625" class="contact-method__value" target="_blank" rel="noopener noreferrer">+963 997 675 625</a>
               </div>
             </div>
           </div>
@@ -956,7 +899,7 @@
     <script>
       if (typeof jsQR === 'undefined') {
         var jsQRscript = document.createElement('script');
-        jsQRscript.src = 'https://cdn.jsdelivr.net/npm/jsqr@1.3.2/dist/jsQR.min.js';
+        jsQRscript.src = 'https://unpkg.com/jsqr@1.3.2/dist/jsQR.min.js';
         document.head.appendChild(jsQRscript);
       }
     </script>
@@ -964,7 +907,7 @@
       (function() {
         'use strict';
 
-        // ===== Translation Dictionary =====
+        // ===== Translation Dictionary ====
         const translations = {
           en: {
             "nav.services": "Services",
@@ -976,12 +919,9 @@
             "hero.badge": "Strategic Digital Agency",
             "hero.titleFull": "We build digital products that drive growth",
             "hero.description": "Fredovanta Digital partners with ambitious businesses to design, develop, and scale custom web solutions, brand identities, and growth strategies that deliver measurable results.",
-            "hero.ctaPrimary": "Start a Project",
+            "hero.ctaPrimary": "WhatsApp",
             "hero.ctaSecondary": "Explore Services",
             "hero.scroll": "Scroll",
-            "stats.projects": "Projects Delivered",
-            "stats.countries": "Countries Served",
-            "stats.satisfaction": "Client Satisfaction",
             "services.tag": "What We Do",
             "services.title": "Services Built for Impact",
             "services.description": "End-to-end digital capabilities designed to solve complex challenges and unlock new opportunities for your business.",
@@ -1012,12 +952,9 @@
             "process.step5.desc": "Seamless deployment followed by performance monitoring, analytics setup, and continuous improvement cycles.",
             "about.tag": "About Us",
             "about.title": "Engineering Digital Excellence",
+            "about.tagline": "Remote-first digital agency serving clients worldwide.",
             "about.desc1": "Fredovanta Digital was founded on the belief that technology should amplify human potential, not complicate it. We're a multidisciplinary team of strategists, designers, and engineers united by a commitment to craftsmanship and measurable outcomes.",
-            "about.desc2": "We don't just build websites — we build digital infrastructure that scales with your ambition. Our clients range from funded startups to established enterprises across North America, Europe, and the Middle East.",
-            "about.stats.years": "Years Experience",
-            "about.stats.team": "Team Members",
-            "about.stats.clients": "Happy Clients",
-            "about.stats.support": "Support Available",
+            "about.desc2": "We build digital infrastructure that scales with your ambition. Our clients range from funded startups to established enterprises worldwide.",
             "about.values.integrity.title": "Integrity First",
             "about.values.integrity.desc": "Transparent communication, honest timelines, and no hidden costs — ever.",
             "about.values.excellence.title": "Craft Excellence",
@@ -1030,8 +967,7 @@
             "contact.title": "Ready to Start Your Project?",
             "contact.description": "Tell us about your goals, timeline, and budget. We'll respond within 24 hours with a tailored proposal or schedule a discovery call.",
             "contact.methods.email.label": "Email",
-            "contact.methods.phone.label": "Phone",
-            "contact.methods.location.label": "Location",
+            "contact.methods.whatsapp.label": "WhatsApp",
             "form.nameLabel": "Full Name",
             "form.emailLabel": "Email Address",
             "form.companyLabel": "Company",
@@ -1089,12 +1025,9 @@
             "hero.badge": "وكالة رقمية استراتيجية",
             "hero.titleFull": "نصنع منتجات رقمية تدفع عجلة النمو",
             "hero.description": "تتعاون فريدوفانتا ديجيتال مع الشركات الطموحة لتصميم وتطوير وتوسيع حلول الويب المخصصة، وهويات العلامات التجارية، واستراتيجيات النمو التي تحقق نتائج قابلة للقياس.",
-            "hero.ctaPrimary": "ابدأ مشروعك",
+            "hero.ctaPrimary": "واتساب",
             "hero.ctaSecondary": "استكشف خدماتنا",
             "hero.scroll": "مرر للأسفل",
-            "stats.projects": "مشاريع منجزة",
-            "stats.countries": "دول مخدومة",
-            "stats.satisfaction": "رضا العملاء",
             "services.tag": "ماذا نقدم",
             "services.title": "خدمات مصممة للتأثير",
             "services.description": "قدرات رقمية شاملة مصممة لحل التحديات المعقدة وفتح فرص جديدة لعملك.",
@@ -1125,12 +1058,9 @@
             "process.step5.desc": "نشر سلس يتبعه مراقبة الأداء، إعداد التحليلات، ودورات تحسين مستمرة.",
             "about.tag": "من نحن",
             "about.title": "هندسة التميز الرقمي",
+            "about.tagline": "وكالة رقمية عن بعد تخدم عملاء حول العالم.",
             "about.desc1": "تأسست فريدوفانتا ديجيتال على اعتقاد أن التكنولوجيا يجب أن تضخم الإمكانات البشرية، لا أن تعقدها. نحن فريق متعدد التخصصات من الاستراتيجيين والمصممين والمهندسين متحدون بالالتزام بالحرفية والنتائج القابلة للقياس.",
-            "about.desc2": "لا نبني مواقع ويب فقط — نبني بنية تحتية رقمية تتوسع مع طموحك. عملاؤنا يتراوحون من الشركات الناشئة الممولة إلى المؤسسات الراسخة في أمريكا الشمالية وأوروبا والشرق الأوسط.",
-            "about.stats.years": "سنوات الخبرة",
-            "about.stats.team": "أعضاء الفريق",
-            "about.stats.clients": "عملاء سعداء",
-            "about.stats.support": "دعم متاح على مدار الساعة",
+            "about.desc2": "نبني بنية تحتية رقمية تتوسع مع طموحك. عملاؤنا يتراوحون من الشركات الناشئة الممولة إلى المؤسسات الراسخة حول العالم.",
             "about.values.integrity.title": "النزاهة أولاً",
             "about.values.integrity.desc": "تواصل شفاف، جداول زمنية صادقة، ولا توجد تكاليف مخفية — أبداً.",
             "about.values.excellence.title": "تميز الحرفية",
@@ -1143,8 +1073,7 @@
             "contact.title": "مستعد لبدء مشروعك؟",
             "contact.description": "أخبرنا عن أهدافك وجدولك الزمني وميزانيتك. سنرد خلال 24 ساعة بعرض مخصص أو نحدد مكالمة اكتشاف.",
             "contact.methods.email.label": "البريد الإلكتروني",
-            "contact.methods.phone.label": "الهاتف",
-            "contact.methods.location.label": "الموقع",
+            "contact.methods.whatsapp.label": "واتساب",
             "form.nameLabel": "الاسم الكامل",
             "form.emailLabel": "البريد الإلكتروني",
             "form.companyLabel": "الشركة",
@@ -1194,7 +1123,7 @@
           }
         };
 
-        // ===== State =====
+        // ===== State ====
         let currentLang = 'en';
         const htmlEl = document.documentElement;
         const langToggle = document.getElementById('langToggle');
@@ -1207,7 +1136,7 @@
         const header = document.querySelector('.header');
         let lastScroll = 0;
 
-        // ===== Translation Switching =====
+        // ===== Translation Switching ====
         function applyTranslations(lang) {
           const dict = translations[lang];
           if (!dict) return;
@@ -1225,7 +1154,6 @@
             }
           });
 
-          // Update select options that don't have data-i18n but need translation
           document.querySelectorAll('select option').forEach(opt => {
             if (opt.value && dict[`form.budget.${opt.value}`]) opt.textContent = dict[`form.budget.${opt.value}`];
             if (opt.value && dict[`form.timeline.${opt.value}`]) opt.textContent = dict[`form.timeline.${opt.value}`];
@@ -1233,7 +1161,6 @@
             if (opt.value && dict[`form.service.${opt.value}`]) opt.textContent = dict[`form.service.${opt.value}`];
           });
 
-          // Update select placeholder options
           document.querySelectorAll('select option[value=""]').forEach(opt => {
             const select = opt.closest('select');
             if (select.id === 'budget' && dict['form.budget.select']) opt.textContent = dict['form.budget.select'];
@@ -1249,10 +1176,6 @@
           langToggle.setAttribute('aria-pressed', lang === 'ar');
           langToggle.setAttribute('aria-label', lang === 'ar' ? 'تبديل إلى الإنجليزية' : 'Switch to Arabic');
 
-          // Re-trigger counter animation for stats
-          animateCounters();
-
-          // Convert process step numbers for Arabic
           document.querySelectorAll('.process-step__number').forEach(el => {
             const original = el.getAttribute('data-original') || el.textContent;
             if (!el.getAttribute('data-original')) el.setAttribute('data-original', el.textContent);
@@ -1262,7 +1185,6 @@
             }
           });
 
-          // Re-trigger scroll reveal
           document.querySelectorAll('.reveal').forEach(el => {
             el.classList.remove('reveal--visible');
           });
@@ -1284,7 +1206,7 @@
           applyTranslations(currentLang);
         });
 
-        // ===== Mobile Navigation =====
+        // ===== Mobile Navigation ====
         mobileMenuBtn.addEventListener('click', () => {
           const isOpen = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
           mobileMenuBtn.setAttribute('aria-expanded', !isOpen);
@@ -1293,7 +1215,6 @@
           document.body.style.overflow = isOpen ? '' : 'hidden';
         });
 
-        // Close mobile nav on link click
         mobileNav.querySelectorAll('a').forEach(link => {
           link.addEventListener('click', () => {
             mobileMenuBtn.setAttribute('aria-expanded', 'false');
@@ -1303,7 +1224,6 @@
           });
         });
 
-        // Close mobile nav on Escape
         document.addEventListener('keydown', (e) => {
           if (e.key === 'Escape' && mobileNav.classList.contains('mobile-nav--open')) {
             mobileMenuBtn.setAttribute('aria-expanded', 'false');
@@ -1313,7 +1233,7 @@
           }
         });
 
-        // ===== Smooth Scroll Offset =====
+        // ===== Smooth Scroll Offset ====
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
           anchor.addEventListener('click', function(e) {
             const targetId = this.getAttribute('href');
@@ -1328,44 +1248,13 @@
           });
         });
 
-        // ===== Counter Animation =====
+        // ===== Arabic Digits ====
         function toArabicDigits(num) {
           if (currentLang !== 'ar') return String(num);
           return String(num).replace(/[0-9]/g, d => '٠١٢٣٤٥٦٧٨٩'[parseInt(d)]);
         }
 
-        function animateCounters() {
-          document.querySelectorAll('[data-count]').forEach(el => {
-            const target = parseInt(el.getAttribute('data-count'), 10);
-            const suffix = el.textContent.includes('+') ? '+' : (el.textContent.includes('%') ? '%' : '');
-            const duration = 2000;
-            const startTime = performance.now();
-
-            function updateCount(currentTime) {
-              const elapsed = currentTime - startTime;
-              const progress = Math.min(elapsed / duration, 1);
-              const eased = 1 - Math.pow(1 - progress, 3); // easeOutCubic
-              const current = Math.floor(target * eased);
-              el.textContent = toArabicDigits(current) + suffix;
-              if (progress < 1) requestAnimationFrame(updateCount);
-            }
-            requestAnimationFrame(updateCount);
-          });
-        }
-
-        // ===== Intersection Observer for Counter Animation =====
-        const counterObserver = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              animateCounters();
-              counterObserver.unobserve(entry.target);
-            }
-          });
-        }, { threshold: 0.5 });
-
-        document.querySelectorAll('.hero__stats, .about__visual-stats').forEach(el => counterObserver.observe(el));
-
-        // ===== Scroll Reveal =====
+        // ===== Scroll Reveal ====
         const revealObserver = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -1377,12 +1266,12 @@
 
         document.querySelectorAll('[style*="animation:"]').forEach(el => revealObserver.observe(el));
 
-        // ===== Header Scroll Effect =====
+        // ===== Header Scroll Effect ====
         window.addEventListener('scroll', () => {
           const currentScroll = window.pageYOffset;
           if (currentScroll > 100) {
             header.style.background = 'rgba(10, 10, 11, 0.95)';
-            header.style.borderBottomColor = 'rgba(212, 168, 67, 0.2)';
+            header.style.borderBottomColor = 'rgba(16,185,129,0.2)';
           } else {
             header.style.background = 'rgba(10, 10, 11, 0.85)';
             header.style.borderBottomColor = 'var(--border)';
@@ -1390,22 +1279,20 @@
           lastScroll = currentScroll;
         }, { passive: true });
 
-        // ===== Respect Reduced Motion =====
+        // ===== Respect Reduced Motion ====
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
           document.documentElement.style.setProperty('--transition-fast', '0ms');
           document.documentElement.style.setProperty('--transition-base', '0ms');
           document.documentElement.style.setProperty('--transition-slow', '0ms');
         }
 
-        // ===== Form Handling =====
+        // ===== Form Handling ====
         quoteForm.addEventListener('submit', async (e) => {
           e.preventDefault();
 
-          // Hide previous status
           formSuccess.style.display = 'none';
           formError.style.display = 'none';
 
-          // Basic validation
           const requiredFields = quoteForm.querySelectorAll('[required]');
           let isValid = true;
           requiredFields.forEach(field => {
@@ -1423,7 +1310,6 @@
             }
           });
 
-          // Email validation
           const emailField = document.getElementById('email');
           if (emailField.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailField.value)) {
             isValid = false;
@@ -1432,10 +1318,8 @@
             if (errorEl) errorEl.textContent = currentLang === 'ar' ? 'بريد إلكتروني غير صحيح' : 'Invalid email address';
           }
 
-          // Honeypot check
           const honeypot = quoteForm.querySelector('[name="honeypot"]');
           if (honeypot && honeypot.value) {
-            // Spam detected, silently succeed
             formSuccess.style.display = 'block';
             quoteForm.reset();
             return;
@@ -1449,10 +1333,7 @@
           submitBtn.textContent = currentLang === 'ar' ? 'جاري الإرسال...' : 'Sending...';
 
           try {
-            // In production, this would POST to a backend endpoint
-            // For now, simulate network request
             await new Promise(resolve => setTimeout(resolve, 1500));
-            // Simulate success (in reality, check response.ok)
             formSuccess.style.display = 'block';
             quoteForm.reset();
           } catch (err) {
@@ -1463,7 +1344,6 @@
           }
         });
 
-        // Clear field error on input
         quoteForm.querySelectorAll('.form-input, .form-textarea, .form-select').forEach(field => {
           field.addEventListener('input', () => {
             field.style.borderColor = '';
@@ -1472,10 +1352,10 @@
           });
         });
 
-        // ===== Initialize =====
+        // ===== Initialize ====
         applyTranslations(currentLang);
 
-        // ===== QR Code Generation & Verification =====
+        // ===== QR Code Generation & Verification ====
         (function() {
           const walletAddress = 'TYtWeZ6Xf9a8uACp35Bv2BpgmZjrHt8mTG';
           const qrImg = document.getElementById('qrImage');
@@ -1486,9 +1366,8 @@
           if (qrImg) {
             function loadQrImage() {
               var sources = [
-                'https://quickchart.io/qr?text=' + encodeURIComponent(walletAddress) + '&size=256&format=png&mode=plain',
-                'https://chart.googleapis.com/chart?chs=256x256&cht=qr&choe=UTF-8&chl=' + encodeURIComponent(walletAddress),
-                'https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=' + encodeURIComponent(walletAddress)
+                'https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=' + encodeURIComponent(walletAddress),
+                'https://chart.googleapis.com/chart?chs=256x256&cht=qr&choe=UTF-8&chl=' + encodeURIComponent(walletAddress)
               ];
               var idx = 0;
               function tryNext() {

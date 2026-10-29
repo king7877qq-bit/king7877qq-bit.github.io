@@ -342,6 +342,31 @@
     .form-status--success { display: block; background: rgba(34,197,94,0.15); border: 1px solid rgba(34,197,94,0.3); color: #4ade80; }
     .form-status--error { display: block; background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.3); color: #f87171; }
 
+    /* ===== Payments & Support ===== */
+    .payments { background: var(--bg-elevated); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 80px 0; }
+    .payments__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+    @media (max-width: 768px) { .payments__grid { grid-template-columns: 1fr; gap: 40px; } }
+    .payments__card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 40px; }
+    .payments__title { font-size: clamp(1.75rem, 3vw, 2.25rem); font-weight: 700; margin-bottom: 16px; }
+    .payments__description { color: var(--fg-muted); line-height: 1.7; margin-bottom: 32px; font-size: 1.0625rem; }
+    .payments__address-card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; margin-bottom: 24px; }
+    .payments__network { display: flex; align-items: center; gap: 8px; font-size: 0.8125rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent); margin-bottom: 12px; }
+    .payments__address-label { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--fg-muted); margin-bottom: 8px; }
+    .payments__address-value { font-family: var(--font-body); font-size: 0.875rem; color: var(--fg); word-break: break-all; margin-bottom: 16px; padding: 12px; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius-sm); }
+    .payments__qr-container { text-align: center; margin-bottom: 20px; }
+    .payments__qr-img { width: 200px; height: 200px; border: 1px solid var(--border); border-radius: var(--radius-md); background: #fff; padding: 8px; }
+    .payments__copy-btn { width: 100%; padding: 14px; background: var(--accent); color: var(--bg); border: none; border-radius: var(--radius-md); font-weight: 600; cursor: pointer; transition: background var(--transition-fast); }
+    .payments__copy-btn:hover { background: var(--accent-hover); }
+    .payments__copy-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .payments__copy-success { display: none; margin-top: 10px; padding: 12px; background: rgba(34,197,94,0.15); border: 1px solid rgba(34,197,94,0.3); color: #4ade80; border-radius: var(--radius-sm); font-size: 0.9375rem; font-weight: 500; text-align: center; }
+    .payments__warning { background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.2); border-radius: var(--radius-md); padding: 20px; margin-top: 24px; }
+    .payments__warning-title { font-weight: 600; color: #f87171; margin-bottom: 8px; font-size: 0.9375rem; }
+    .payments__warning-text { color: var(--fg-muted); font-size: 0.875rem; line-height: 1.6; }
+    .payments__warning-text code { color: var(--fg); background: var(--bg-elevated); padding: 2px 6px; border-radius: 4px; font-size: 0.8125rem; }
+    .payments__disclaimer { margin-top: 24px; font-size: 0.8125rem; color: var(--fg-muted); line-height: 1.6; }
+    .payments__qr-verify { margin-top: 12px; font-size: 0.875rem; color: var(--fg-muted); min-height: 1.5em; }
+    .payments__qr-verify--ok { color: #4ade80; }
+    .payments__qr-verify--fail { color: #f87171; }
     /* ===== Footer ===== */
     .footer { background: var(--bg); border-top: 1px solid var(--border); padding: 64px 0 32px; }
     .footer__grid { display: grid; grid-template-columns: 2fr repeat(3, 1fr); gap: 48px; margin-bottom: 48px; }
@@ -803,6 +828,60 @@
       </div>
     </section>
 
+    <!-- Payments & Support -->
+    <section class="payments" aria-labelledby="payments-title">
+      <div class="container">
+        <div class="payments__grid">
+          <div class="payments__card">
+            <h2 id="payments-title" class="payments__title" data-i18n="payments.title">Payments &amp; Support</h2>
+            <p class="payments__description" data-i18n="payments.description">We accept payments in USDT on the TRON network (TRC20). Please verify the address and network before sending funds.</p>
+
+            <div class="payments__address-card">
+              <div class="payments__network" data-i18n="payments.network">TRON — USDT TRC20</div>
+              <div class="payments__address-label" data-i18n="payments.addressLabel">Wallet Address</div>
+              <div class="payments__address-value" id="walletAddress">TYtWeZ6Xf9a8uACp35Bv2BpgmZjrHt8mTG</div>
+              <div class="payments__qr-container">
+                <img id="qrImage" class="payments__qr-img" alt="QR code for wallet address" />
+                <div class="payments__qr-verify" id="qrVerify" data-i18n="payments.qrVerify"></div>
+              </div>
+              <button class="payments__copy-btn" id="copyAddressBtn" data-i18n="payments.copyBtn">Copy Address</button>
+              <div class="payments__copy-success" id="copySuccess" data-i18n="payments.copySuccess">Address copied to clipboard</div>
+            </div>
+
+            <div class="payments__warning">
+              <div class="payments__warning-title" data-i18n="payments.warningTitle">Important</div>
+              <div class="payments__warning-text" data-i18n="payments.warningText">Please verify the network and address before sending funds. Sending to the wrong network or address may result in permanent loss of funds. Only USDT TRC20 on the TRON network is supported.</div>
+            </div>
+
+            <div class="payments__disclaimer" data-i18n="payments.disclaimer">We do not display private keys or recovery phrases, and we never ask for them. We do not provide exchange rates, transfer fees, or alternative payment methods. We have not verified the wallet balance or ownership through an external source.</div>
+          </div>
+
+          <div class="payments__card">
+            <h3 class="payments__title" data-i18n="payments.supportTitle">Support</h3>
+            <p class="payments__description" data-i18n="payments.supportDesc">For payment questions or technical support, contact us directly.</p>
+            <div class="contact-method" style="margin-bottom: 20px;">
+              <div class="contact-method__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg>
+              </div>
+              <div>
+                <div class="contact-method__label" data-i18n="contact.methods.email.label">Email</div>
+                <a href="mailto:hello@fredovanta.com" class="contact-method__value">hello@fredovanta.com</a>
+              </div>
+            </div>
+            <div class="contact-method">
+              <div class="contact-method__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div>
+                <div class="contact-method__label" data-i18n="contact.methods.phone.label">Phone</div>
+                <a href="tel:+15550199" class="contact-method__value">+1 (555) 019-9000</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Footer -->
     <footer class="footer" role="contentinfo">
       <div class="container">
@@ -873,6 +952,7 @@
     </footer>
 
     <!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsQR/1.3.2/jsQR.min.js"></script>
     <script>
       (function() {
         'use strict';
@@ -978,7 +1058,19 @@
             "footer.privacy": "Privacy Policy",
             "footer.terms": "Terms of Service",
             "footer.cookies": "Cookie Policy",
-            "footer.copyright": "© 2025 Fredovanta Digital. All rights reserved."
+            "footer.copyright": "© 2025 Fredovanta Digital. All rights reserved.",
+            "payments.title": "Payments & Support",
+            "payments.description": "We accept payments in USDT on the TRON network (TRC20). Please verify the address and network before sending funds.",
+            "payments.network": "TRON — USDT TRC20",
+            "payments.addressLabel": "Wallet Address",
+            "payments.copyBtn": "Copy Address",
+            "payments.copySuccess": "Address copied to clipboard",
+            "payments.qrVerify": "QR code verified: address matches",
+            "payments.warningTitle": "Important",
+            "payments.warningText": "Please verify the network and address before sending funds. Sending to the wrong network or address may result in permanent loss of funds. Only USDT TRC20 on the TRON network is supported.",
+            "payments.disclaimer": "We do not display private keys or recovery phrases, and we never ask for them. We do not provide exchange rates, transfer fees, or alternative payment methods. We have not verified the wallet balance or ownership through an external source.",
+            "payments.supportTitle": "Support",
+            "payments.supportDesc": "For payment questions or technical support, contact us directly."
           },
           ar: {
             "nav.services": "الخدمات",
@@ -1079,7 +1171,19 @@
             "footer.privacy": "سياسة الخصوصية",
             "footer.terms": "شروط الخدمة",
             "footer.cookies": "سياسة ملفات تعريف الارتباط",
-            "footer.copyright": "© ٢٠٢٥ فريدوفانتا ديجيتال. جميع الحقوق محفوظة."
+            "footer.copyright": "© ٢٠٢٥ فريدوفانتا ديجيتال. جميع الحقوق محفوظة.",
+            "payments.title": "المدفوعات والدعم",
+            "payments.description": "نقبل المدفوعات بـ USDT على شبكة TRON (TRC20). يرجى التحقق من العنوان والشبكة قبل إرسال الأموال.",
+            "payments.network": "TRON — USDT TRC20",
+            "payments.addressLabel": "عنوان المحفظة",
+            "payments.copyBtn": "نسخ العنوان",
+            "payments.copySuccess": "تم نسخ العنوان إلى الحافظة",
+            "payments.qrVerify": "تم التحقق من رمز الـ QR: يتطابق العنوان",
+            "payments.warningTitle": "هام",
+            "payments.warningText": "يرجى التحقق من الشبكة والعنوان قبل إرسال الأموال. قد يؤدي الإرسال إلى شبكة أو عنوان خاطئ إلى فقدان الأموال بشكل دائم. USDT TRC20 على شبكة TRON فقط مدعوم.",
+            "payments.disclaimer": "نحن لا نعرض المفاتيح الخاصة أو عبارات الاسترداد، ولا نطلبها أبدًا. نحن لا نقدم أسعار صرف أو رسوم تحويل أو وسائل دفع بديلة. لم نتحقق من رصيد المحفظة أو ملكيتها عبر مصدر خارجي.",
+            "payments.supportTitle": "الدعم",
+            "payments.supportDesc": "لأسئلة المدفوعات أو الدعم الفني، تواصل معنا مباشرة."
           }
         };
 
@@ -1363,6 +1467,73 @@
 
         // ===== Initialize =====
         applyTranslations(currentLang);
+
+        // ===== QR Code Generation & Verification =====
+        (function() {
+          const walletAddress = 'TYtWeZ6Xf9a8uACp35Bv2BpgmZjrHt8mTG';
+          const qrImg = document.getElementById('qrImage');
+          const qrVerify = document.getElementById('qrVerify');
+          const copyBtn = document.getElementById('copyAddressBtn');
+          const copySuccess = document.getElementById('copySuccess');
+
+          if (qrImg) {
+            qrImg.src = 'https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=' + encodeURIComponent(walletAddress);
+            qrImg.onload = function() {
+              verifyQRCode();
+            };
+            qrImg.onerror = function() {
+              if (qrVerify) {
+                qrVerify.textContent = currentLang === 'ar' ? 'فشل تحميل رمز الـ QR' : 'Failed to load QR code';
+                qrVerify.className = 'payments__qr-verify payments__qr-verify--fail';
+              }
+            };
+          }
+
+          function verifyQRCode() {
+            if (!qrImg || !qrVerify) return;
+
+            const canvas = document.createElement('canvas');
+            canvas.width = qrImg.naturalWidth || qrImg.width;
+            canvas.height = qrImg.naturalHeight || qrImg.height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(qrImg, 0, 0);
+
+            try {
+              const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+              const code = jsQR(imageData.data, imageData.width, imageData.height);
+
+              if (code && code.data === walletAddress) {
+                qrVerify.textContent = currentLang === 'ar' ? 'تم التحقق من رمز الـ QR: يتطابق العنوان' : 'QR code verified: address matches';
+                qrVerify.className = 'payments__qr-verify payments__qr-verify--ok';
+              } else {
+                qrVerify.textContent = currentLang === 'ar' ? 'فشل التحقق من رمز الـ QR' : 'QR code verification failed';
+                qrVerify.className = 'payments__qr-verify payments__qr-verify--fail';
+              }
+            } catch (e) {
+              qrVerify.textContent = currentLang === 'ar' ? 'فشل التحقق من رمز الـ QR' : 'QR code verification failed';
+              qrVerify.className = 'payments__qr-verify payments__qr-verify--fail';
+            }
+          }
+
+          if (copyBtn) {
+            copyBtn.addEventListener('click', async () => {
+              try {
+                await navigator.clipboard.writeText(walletAddress);
+                copySuccess.style.display = 'block';
+                setTimeout(() => { copySuccess.style.display = 'none'; }, 3000);
+              } catch (err) {
+                const textArea = document.createElement('textarea');
+                textArea.value = walletAddress;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                copySuccess.style.display = 'block';
+                setTimeout(() => { copySuccess.style.display = 'none'; }, 3000);
+              }
+            });
+          }
+        })();
       })();
     </script>
 </body>

@@ -956,7 +956,7 @@
     <script>
       if (typeof jsQR === 'undefined') {
         var jsQRscript = document.createElement('script');
-        jsQRscript.src = 'https://unpkg.com/jsqr@1.3.2/dist/jsQR.min.js';
+        jsQRscript.src = 'https://cdn.jsdelivr.net/npm/jsqr@1.3.2/dist/jsQR.min.js';
         document.head.appendChild(jsQRscript);
       }
     </script>
@@ -1486,8 +1486,9 @@
           if (qrImg) {
             function loadQrImage() {
               var sources = [
-                'https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=' + encodeURIComponent(walletAddress),
-                'https://chart.googleapis.com/chart?chs=256x256&cht=qr&choe=UTF-8&chl=' + encodeURIComponent(walletAddress)
+                'https://quickchart.io/qr?text=' + encodeURIComponent(walletAddress) + '&size=256&format=png&mode=plain',
+                'https://chart.googleapis.com/chart?chs=256x256&cht=qr&choe=UTF-8&chl=' + encodeURIComponent(walletAddress),
+                'https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=' + encodeURIComponent(walletAddress)
               ];
               var idx = 0;
               function tryNext() {
